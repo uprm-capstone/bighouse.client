@@ -1,12 +1,20 @@
-import { Home } from "scenes";
-import "./App.css";
+import React, { useState } from 'react';
+import Header from './Header';
+import Login from './Login';
+
 
 function App() {
+
   return (
-    <div className="App">
-      <Home />
-    </div>
-  );
+    <>
+ 
+    <Header />
+    <Login />
+    
+    </>
+
+  )
 }
+
 
 export default App;
