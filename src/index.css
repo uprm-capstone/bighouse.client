@@ -1,0 +1,147 @@
+*{
+
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+
+}
+
+.App{
+
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #333;
+    box-shadow: 0px 0px 15px gray;
+
+}
+
+#root {
+
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+
+.staticHeader{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.headerImage{
+
+    width: 100%;
+    height: auto;
+    border-radius: 10px;  
+    
+}
+
+.loginSection{
+
+  width: 100%;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0px -5px 10px 0px gray;
+  background-color: #F5F5F5;
+  border-radius: 10px; 
+  padding: 20px; 
+  padding-left: 75px; 
+
+}
+
+.h1Gray{
+    
+    font-size: 3rem;
+    color: #818181; 
+    margin-top: 50px;
+    margin-bottom: 50px;  
+    align-self: flex-start;
+    font-family: Arial;
+
+}
+.loginForm{
+    
+    align-self: flex-start;
+    
+}
+
+.inputTitle{
+
+    font-size: 2rem;
+    font-family: Arial; 
+    margin-right: 500px; 
+    color: #818181;
+    margin-top: 30px; 
+
+}
+
+input{
+
+    font-size: 1.5rem;
+    width: 90%;
+    border-radius: 5px; 
+    margin: 20px;
+    margin-top: 10px; 
+    margin-bottom: 60px; 
+    margin-left: 0;
+    padding: 5px; 
+    
+}
+
+.inputPass{
+
+    font-size: 1.5rem;
+    width: 90%;
+    border-radius: 5px; 
+    margin: 20px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 5px; 
+
+}
+
+.forgotPassword{
+
+    margin-left: 70%;
+    font-family: arial;
+    color: #6599A5;
+    margin-bottom: 110px; 
+
+}
+
+button{
+
+    background-color: #2d5fad;
+    color: white; 
+    font-family: Arial; 
+    font-size: 1.5rem;
+    width: 500px; 
+    margin-left: 55px;
+    margin-bottom: 20px; 
+    padding: 8px;
+    border-radius: 5px; 
+    
+}
+
+.createAccount{
+
+    margin: 20px; 
+    margin-right: 100px; 
+    font-family: Arial;
+    color: #6599A5;
+
+}

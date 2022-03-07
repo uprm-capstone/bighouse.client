@@ -6,12 +6,10 @@ import Login from './Login';
 function App() {
 
   return (
-    <>
- 
+    <div class="App">
     <Header />
     <Login />
-    
-    </>
+    </ div>
 
   )
 }
