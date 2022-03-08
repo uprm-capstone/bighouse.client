@@ -66,10 +66,10 @@
     
     font-size: 3rem;
     color: #818181; 
-    margin-top: 50px;
+    margin-top: 40px;
     margin-bottom: 50px;  
     align-self: flex-start;
-    font-family: Arial;
+    font-family: 'Segoe UI';
 
 }
 .loginForm{
@@ -81,10 +81,10 @@
 .inputTitle{
 
     font-size: 2rem;
-    font-family: Arial; 
+    font-family: 'Segoe UI';
     margin-right: 500px; 
     color: #818181;
-    margin-top: 30px; 
+    margin-top: 20px; 
 
 }
 
@@ -92,12 +92,13 @@ input{
 
     font-size: 1.5rem;
     width: 90%;
-    border-radius: 5px; 
+    border-radius: 9px; 
     margin: 20px;
     margin-top: 10px; 
     margin-bottom: 60px; 
     margin-left: 0;
     padding: 5px; 
+    font-family: 'Segoe UI';
     
 }
 
@@ -105,21 +106,22 @@ input{
 
     font-size: 1.5rem;
     width: 90%;
-    border-radius: 5px; 
+    border-radius: 9px; 
     margin: 20px;
     margin-top: 10px; 
     margin-bottom: 10px;
     margin-left: 0;
     padding: 5px; 
+    font-family: 'Segoe UI';
 
 }
 
 .forgotPassword{
 
     margin-left: 70%;
-    font-family: arial;
-    color: #6599A5;
-    margin-bottom: 110px; 
+    font-family: 'Segoe UI';
+    color: #0E90C1;
+    margin-bottom: 100px; 
 
 }
 
@@ -127,11 +129,11 @@ button{
 
     background-color: #2d5fad;
     color: white; 
-    font-family: Arial; 
+    font-family: 'Segoe UI'; 
     font-size: 1.5rem;
     width: 500px; 
     margin-left: 55px;
-    margin-bottom: 20px; 
+    margin-bottom: 5px; 
     padding: 8px;
     border-radius: 5px; 
     
@@ -142,6 +144,6 @@ button{
     margin: 20px; 
     margin-right: 100px; 
     font-family: Arial;
-    color: #6599A5;
+    color: #0E90C1;
 
 }
