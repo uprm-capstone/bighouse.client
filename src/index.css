@@ -15,7 +15,7 @@
     justify-content: flex-start;
     align-items: center;
     border: 1px solid #333;
-    box-shadow: 0px 0px 15px gray;
+    box-shadow: 0px 0px 10px gray;
 
 }
 
@@ -42,7 +42,6 @@
 
     width: 100%;
     height: auto;
-    border-radius: 10px;  
     
 }
 
@@ -54,9 +53,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0px -5px 10px 0px gray;
+  box-shadow: 0px -8px 15px 0px gray;
   background-color: #F5F5F5;
   border-radius: 10px; 
+  margin-top: -20px; 
   padding: 20px; 
   padding-left: 75px; 
 
@@ -93,6 +93,7 @@ input{
     font-size: 1.5rem;
     width: 90%;
     border-radius: 9px; 
+    border-color: gray; 
     margin: 20px;
     margin-top: 10px; 
     margin-bottom: 60px; 
@@ -129,13 +130,14 @@ button{
 
     background-color: #2d5fad;
     color: white; 
+    border-color: gray;
     font-family: 'Segoe UI'; 
     font-size: 1.5rem;
     width: 500px; 
     margin-left: 55px;
     margin-bottom: 5px; 
     padding: 8px;
-    border-radius: 5px; 
+    border-radius: 9px; 
     
 }
 
