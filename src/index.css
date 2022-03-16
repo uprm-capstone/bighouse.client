@@ -1,151 +1,196 @@
-*{
-
-    margin: 0;
-    padding: 0; 
-    box-sizing: border-box;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App{
-
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border: 1px solid #333;
-    box-shadow: 0px 0px 10px gray;
-
+.App {
+  width: 100%;
+  max-width: 800px;
+  height: 275vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #333;
+  box-shadow: 0px 0px 10px gray;
 }
 
 #root {
-
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-
-
-.staticHeader{
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.headerImage{
-
-    width: 100%;
-    height: auto;
-    
+.staticHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.loginSection{
-
+.headerImage {
   width: 100%;
-  height: 100vh; 
+  height: auto;
+}
+
+.loginSection {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   box-shadow: 0px -8px 15px 0px gray;
-  background-color: #F5F5F5;
-  border-radius: 10px; 
-  margin-top: -20px; 
-  padding: 20px; 
-  padding-left: 75px; 
-
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin-top: -20px;
+  padding: 20px;
+  padding-left: 75px;
 }
 
-.h1Gray{
-    
-    font-size: 3rem;
-    color: #818181; 
-    margin-top: 40px;
-    margin-bottom: 50px;  
-    align-self: flex-start;
-    font-family: 'Segoe UI';
-
+.h1Gray {
+  font-size: 3rem;
+  color: #818181;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  align-self: flex-start;
+  font-family: "Segoe UI";
 }
-.loginForm{
-    
-    align-self: flex-start;
-    
+.loginForm {
+  align-self: flex-start;
 }
 
-.inputTitle{
-
-    font-size: 2rem;
-    font-family: 'Segoe UI';
-    margin-right: 500px; 
-    color: #818181;
-    margin-top: 20px; 
-
+.signupSection {
+  width: 100%;
+  height: 250vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0px -5px 10px 0px gray;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin-top: -20px;
+  padding: 20px;
+  padding-left: 75px;
 }
 
-input{
-
-    font-size: 1.5rem;
-    width: 90%;
-    border-radius: 9px; 
-    border-color: gray; 
-    margin: 20px;
-    margin-top: 10px; 
-    margin-bottom: 60px; 
-    margin-left: 0;
-    padding: 5px; 
-    font-family: 'Segoe UI';
-    
+.signupForm {
+  align-self: flex-start;
 }
 
-.inputPass{
-
-    font-size: 1.5rem;
-    width: 90%;
-    border-radius: 9px; 
-    margin: 20px;
-    margin-top: 10px; 
-    margin-bottom: 10px;
-    margin-left: 0;
-    padding: 5px; 
-    font-family: 'Segoe UI';
-
+.inputTitle {
+  font-size: 2rem;
+  font-family: "Segoe UI";
+  color: #818181;
+  margin-top: 20px;
 }
 
-.forgotPassword{
-
-    margin-left: 70%;
-    font-family: 'Segoe UI';
-    color: #0E90C1;
-    margin-bottom: 100px; 
-
+input {
+  font-size: 1.5rem;
+  width: 90%;
+  border-radius: 9px;
+  border: 1px solid;
+  border-color: gray;
+  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 60px;
+  margin-left: 0;
+  padding: 5px;
+  font-family: "Segoe UI";
 }
 
-button{
-
-    background-color: #2d5fad;
-    color: white; 
-    border-color: gray;
-    font-family: 'Segoe UI'; 
-    font-size: 1.5rem;
-    width: 500px; 
-    margin-left: 55px;
-    margin-bottom: 5px; 
-    padding: 8px;
-    border-radius: 9px; 
-    
+.dropDown {
+  font-size: 1.5rem;
+  width: 90%;
+  border-radius: 9px;
+  border-color: gray;
+  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 60px;
+  margin-left: 0;
+  padding: 5px;
+  font-family: "Segoe UI";
 }
 
-.createAccount{
+.inputPass {
+  font-size: 1.5rem;
+  width: 90%;
+  border-radius: 9px;
+  border: 1px;
+  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0;
+  padding: 5px;
+  font-family: "Segoe UI";
+}
 
-    margin: 20px; 
-    margin-right: 100px; 
-    font-family: Arial;
-    color: #0E90C1;
+.forgotPassword {
+  margin-left: 70%;
+  font-family: "Segoe UI";
+  color: #0e90c1;
+  margin-bottom: 100px;
+}
 
+button {
+  background-color: #2d5fad;
+  color: white;
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 1.5rem;
+  width: 500px;
+  margin-left: 55px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 9px;
+}
+
+.createAccount {
+  margin: 20px;
+  margin-right: 100px;
+  font-family: Arial;
+  color: #0e90c1;
+}
+
+.hyperLink {
+  margin: 20px;
+  margin-right: 100px;
+  font-family: Arial;
+  color: #0e90c1;
+}
+
+.instructions {
+  font-size: 1rem;
+  font-family: "Segoe UI";
+  border-radius: 0.5rem;
+  background: #333333;
+  width: 90%;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: 25px;
+}
+
+.instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.errorMessage {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.line {
+  display: inline-block;
 }
