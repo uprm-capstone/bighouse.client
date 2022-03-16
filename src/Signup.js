@@ -3,10 +3,10 @@ import DropDownList from "./DropDownList";
 import "./index.css";
 
 
-const NAME_REGEX = /^[a-z][a-zA-Z0-9-_]$/;
+const NAME_REGEX = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const DATE_REGEX = /^(((((0[1-9])|(1\d)|(2[0-8]))-((0[1-9])|(1[0-2])))|((31-((0[13578])|(1[02])))|((29|30)-((0[1,3-9])|(1[0-2])))))-((20[0-9][0-9]))|(29-02-20(([02468][048])|([13579][26]))))$/;
+const DATE_REGEX = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/
 
 const Signup = () => {
 
@@ -86,17 +86,43 @@ const Signup = () => {
         setErrorMessage('');
     }, [firstName, lastName, date, email, password, matchPassword])
 
+   
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // if button enabled with JS hack
+        const v1 = NAME_REGEX.test(firstName);
+        const v2 = NAME_REGEX.test(lastName);
+        const v3 = DATE_REGEX.test(date);
+        const v4 = EMAIL_REGEX.test(email);
+        const v5 = PASSWORD_REGEX.test(password);
+        if (!v1 || !v2 || !v3 || !v4 || !v5) {
+            setErrorMessage("Invalid Entry");
+            return;
+        }
+        console.log(firstName, lastName, date, email, password);
+        setSuccess(true);
+    }
 
   
 
     return(
+
+        <>
+        {success ? (
+            <section>
+                <h1>Success!</h1>
+                <p>
+                    <a href="#">Sign In</a>
+                </p>
+            </section>
+        ) : (
         <section class="signupSection">
 
             <p ref={errRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p>
 
             <h1 class="h1Gray">Sign Up</h1>
 
-        <form class="signupForm"> 
+        <form class="signupForm" onSubmit={handleSubmit}> 
 
             <label  class="inputTitle" htmlFor="firstName"> 
                First Name: 
@@ -114,10 +140,10 @@ const Signup = () => {
                     onFocus={() => setFirstNameFocus(true)}
                     onBlur={() => setFirstNameFocus(false)}
                     />
-                    <p id = "uidnote" className={firstNameFocus && firstName && !validFirstName ? "instructions" : "offscreen"}>
+                    <p id="uidnote" className={firstNameFocus && firstName && !validFirstName ? "instructions" : "offscreen"}>
 
-                       {/* Must begin with a letter. <br />
-                        Numbers, underscores, hyphens and special characters are not allowed. */}
+                        Must begin with a letter. <br />
+                        Numbers, underscores, hyphens and special characters are not allowed.
                     </p>
 
                     <label class="inputTitle" htmlFor="lastName"> 
@@ -138,8 +164,9 @@ const Signup = () => {
                     />
                     <p id = "uidnote" className={lastNameFocus && lastName && !validLastName ? "instructions" : "offscreen"}>
 
-                       {/*Must begin with a letter. <br />
-                        Numbers, underscores, hyphens and special characters are not allowed. */}
+                       Must begin with a letter. <br />
+                       Numbers, underscores, hyphens and special characters are not allowed.
+
                     </p>
 
                     <label class="inputTitle" htmlFor="dateOfBirth"> 
@@ -160,7 +187,7 @@ const Signup = () => {
                     />
                     <p id = "uidnote" className={dateFocus && date && !validDate ? "instructions" : "offscreen"}>
 
-                       {/* Must follow the DD/MM/YYYY format. */}
+                        Must follow the DD/MM/YYYY format. 
                     </p>
 
                     <label class="inputTitle" htmlFor="gender">
@@ -187,8 +214,8 @@ const Signup = () => {
                     />
                     <p id = "uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
 
-                       {/* 4 to 24 characters. <br />
-                        Letters, numbers, underscores, periods, hyphens allowed. */} 
+                        4 to 24 characters. <br />
+                        Letters, numbers, underscores, periods, hyphens allowed. 
                     </p>
 
                     <label class="inputTitle" htmlFor="password">
@@ -208,15 +235,43 @@ const Signup = () => {
                             onBlur={() => setPasswordFocus(false)}
                         />
                         <p id="passwordnote" className={passwordFocus && !validPassword ? "instructions" : "offscreen"}>
-                            {/*8 to 24 characters.<br />
+                            8 to 24 characters.<br />
                             Must include uppercase and lowercase letters, a number and a special character.<br />
-                    Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span> */}
+                    Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
                         </p>
 
-                        <button> Submit</button>
+                        <label class="inputTitle" htmlFor="confirm_pwd">
+                            Confirm Password:
+                        </label>
 
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            placeholder="Confirm Password"
+                            onChange={(e) => setMatchPassword(e.target.value)}
+                            value={matchPassword}
+                            required
+                            aria-invalid={validMatch ? "false" : "true"}
+                            aria-describedby="confirmnote"
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={() => setMatchFocus(false)}
+                        />
+                        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+                            Must match the first password input field.
+                        </p>
+
+                        <button disabled={!validFirstName || !validLastName || !validDate || !validEmail
+                         || !validPassword || !validMatch ? true : false}>Sign Up</button>
             </form>
+            <p>
+                        <span className="line">
+                            {/*put router link here*/}
+                            <a class="hyperLink" href="#">Login</a>
+                        </span>
+                    </p>
         </section>
+        )}
+        </>
     )
 }
 

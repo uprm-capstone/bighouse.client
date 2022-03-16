@@ -34,7 +34,7 @@ export default class DropDownList extends Component {
     console.log(this.state.selectOptions)
     return (
       <div class="dropDown">
-        <Select  options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
+        <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
       </div>
     )
   }
