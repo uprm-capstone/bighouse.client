@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import Header from './Header';
-import Login from './Login';
-import Signup from './Signup';
+import Header from './Components/Sections/Header';
+
+import Login from './Scenes/Login';
+import Signup from './Scenes/Signup';
+import RecoverPassword from './Scenes/RecoverPassword';
 
 
 function App() {
@@ -9,7 +11,7 @@ function App() {
   return (
     <div class="App">
     <Header />
-    <Signup />
+    <RecoverPassword />
     </ div>
 
   )

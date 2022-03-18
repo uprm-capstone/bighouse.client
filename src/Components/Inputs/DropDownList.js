@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
-import "./index.css";
+
 
 export default class DropDownList extends Component {
 

@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect} from "react";
-import DropDownList from "./DropDownList";
-import "./index.css";
+import DropDownList from "../Components/Inputs/DropDownList";
+import FormButton from "../Components/Buttons/FormButton";
+import "../Styles/index.css";
 
 
 const NAME_REGEX = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
@@ -28,6 +29,8 @@ const Signup = () => {
     const [date, setDate] = useState('');
     const [validDate, setValidDate] = useState(false);
     const [dateFocus, setDateFocus] = useState(false);
+
+    const [gender, setGender] = useState('');
 
     const [password, setPassword] = useState('');
     const [validPassword, setValidPassword] = useState(false);
@@ -74,6 +77,11 @@ const Signup = () => {
     }, [date])
 
     useEffect(() => {
+        console.log(gender); 
+        setGender(gender);
+    }, [gender])
+
+    useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
         console.log(result);
         console.log(password);
@@ -84,7 +92,7 @@ const Signup = () => {
 
     useEffect(() => {
         setErrorMessage('');
-    }, [firstName, lastName, date, email, password, matchPassword])
+    }, [firstName, lastName, date, gender, email, password, matchPassword])
 
    
     const handleSubmit = async (e) => {
@@ -99,7 +107,7 @@ const Signup = () => {
             setErrorMessage("Invalid Entry");
             return;
         }
-        console.log(firstName, lastName, date, email, password);
+        console.log(firstName, lastName, date, gender, email, password);
         setSuccess(true);
     }
 
@@ -187,17 +195,17 @@ const Signup = () => {
                     />
                     <p id = "uidnote" className={dateFocus && date && !validDate ? "instructions" : "offscreen"}>
 
-                        Must follow the DD/MM/YYYY format. 
+                        Must follow the MM/DD/YYYY format. 
                     </p>
 
                     <label class="inputTitle" htmlFor="gender">
-                            Gender: 
+                            Gender:
                         </label>
                     <DropDownList />
                 
 
                 <label class="inputTitle" htmlFor="email"> 
-                        Email: 
+                        Email:
                 </label>
                 <input 
                     type="email"
@@ -260,8 +268,10 @@ const Signup = () => {
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validFirstName || !validLastName || !validDate || !validEmail
-                         || !validPassword || !validMatch ? true : false}>Sign Up</button>
+
+                        <FormButton name="Sign Up" disabled={!validFirstName || !validLastName || !validDate || !validEmail
+            || !validPassword || !validMatch ? true : false} />
+                   
             </form>
             <p>
                         <span className="line">
