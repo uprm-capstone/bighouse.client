@@ -2,7 +2,7 @@ import { useRef, useState, useEffect} from "react";
 import DropDownList from "../Components/Inputs/DropDownList";
 import FormButton from "../Components/Buttons/FormButton";
 import "../Styles/index.css";
-
+import axios from 'axios';
 
 const NAME_REGEX = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
@@ -10,6 +10,9 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const DATE_REGEX = /^(?:0[1-9]|[12]\d|3[01])([\/.-])(?:0[1-9]|1[012])\1(?:19|20)\d\d$/
 
 const Signup = () => {
+
+    const [warningText, setWarningText] = useState("");
+    const [sucessText, setSucessText] = useState("");
 
     const userRef = useRef();
     const errRef = useRef(); 
@@ -50,41 +53,41 @@ const Signup = () => {
 
     useEffect(() => {
         const result = NAME_REGEX.test(firstName);
-        console.log(result);
-        console.log(firstName);
+        // console.log(result);
+        // console.log(firstName);
         setValidFirstName(result);
     }, [firstName])
 
     useEffect(() => {
         const result = NAME_REGEX.test(lastName);
-        console.log(result);
-        console.log(lastName);
+        // console.log(result);
+        // console.log(lastName);
         setValidLastName(result);
     }, [lastName])
 
     useEffect(() => {
         const result = EMAIL_REGEX.test(email);
-        console.log(result);
-        console.log(email);
+        // console.log(result);
+        // console.log(email);
         setValidEmail(result);
     }, [email])
 
     useEffect(() => {
         const result = DATE_REGEX.test(date);
-        console.log(result);
-        console.log(date);
+        // console.log(result);
+        // console.log(date);
         setValidDate(result);
     }, [date])
 
     useEffect(() => {
-        console.log(gender); 
+        // console.log(gender); 
         setGender(gender);
     }, [gender])
 
     useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
-        console.log(result);
-        console.log(password);
+        // console.log(result);
+        // console.log(password);
         setValidPassword(result);
         const match = password === matchPassword; 
         setValidMatch(match);
@@ -107,11 +110,30 @@ const Signup = () => {
             setErrorMessage("Invalid Entry");
             return;
         }
-        console.log(firstName, lastName, date, gender, email, password);
+        // console.log(firstName, lastName, date, gender, email, password);
         setSuccess(true);
     }
 
-  
+    const createUser =(e)=>{
+        e.preventDefault();
+        const user = {
+            User_ID: 1,
+            User_Name: firstName,
+            User_LastName: lastName,
+            User_Gender: "Male",
+            User_Birth: date,
+            User_Email: email
+        };
+        console.log(user);
+        axios.post(`http://localhost:8008/users/create-user`, user )
+        .then(res => {
+            console.log(res);
+            setSucessText(res.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     return(
 
@@ -201,7 +223,7 @@ const Signup = () => {
                     <label class="inputTitle" htmlFor="gender">
                             Gender:
                         </label>
-                    <DropDownList />
+                    <DropDownList/>
                 
 
                 <label class="inputTitle" htmlFor="email"> 
@@ -267,10 +289,10 @@ const Signup = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
                             Must match the first password input field.
                         </p>
+                        <button onClick={createUser}>Sign up</button>
 
-
-                        <FormButton name="Sign Up" disabled={!validFirstName || !validLastName || !validDate || !validEmail
-            || !validPassword || !validMatch ? true : false} />
+                        {/* <FormButton name="Sign Up" disabled={!validFirstName || !validLastName || !validDate || !validEmail
+            || !validPassword || !validMatch ? true : false} /> */}
                    
             </form>
             <p>
@@ -285,6 +307,6 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Signup;
 
    
