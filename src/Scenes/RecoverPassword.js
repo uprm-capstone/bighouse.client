@@ -44,9 +44,9 @@ export default function RecoverPassword(){
 
                 <Button name="Send Link" /> 
                     <p class='createAccount'>
-                        Log In
+                        
                         <span className="line">
-                            <a href='#'></a>
+                            <a href={window.location.origin+"/Login"}>Log In</a>
                         </span>
                     </p>
         
