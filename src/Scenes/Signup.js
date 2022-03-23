@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect} from "react";
-import DropDownList from "../Components/Inputs/DropDownList";
-import FormButton from "../Components/Buttons/FormButton";
+// import DropDownList from "../Components/Inputs/DropDownList";
+// import FormButton from "../Components/Buttons/FormButton";
 import "../Styles/index.css";
 import axios from 'axios';
+import Select from 'react-select';
 
 const NAME_REGEX = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/;
@@ -46,6 +47,11 @@ const Signup = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const getOptions = [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
+        { value: 'other', label: 'Other' }
+    ]
 
     useEffect(() => {
         userRef.current.focus();
@@ -97,7 +103,10 @@ const Signup = () => {
         setErrorMessage('');
     }, [firstName, lastName, date, gender, email, password, matchPassword])
 
-   
+    const handleChange = (e) => {
+        setGender(e.value);
+      };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
@@ -120,7 +129,7 @@ const Signup = () => {
             User_ID: 1,
             User_Name: firstName,
             User_LastName: lastName,
-            User_Gender: "Male",
+            User_Gender: gender,
             User_Birth: date,
             User_Email: email
         };
@@ -129,6 +138,7 @@ const Signup = () => {
         .then(res => {
             console.log(res);
             setSucessText(res.data);
+            window.location.href = window.location.origin+"/Login";
         })
         .catch((error) => {
             console.log(error);
@@ -223,7 +233,10 @@ const Signup = () => {
                     <label class="inputTitle" htmlFor="gender">
                             Gender:
                         </label>
-                    <DropDownList/>
+                        <div class="dropDown">
+                            <Select options={getOptions} onChange={handleChange} />{console.log(gender)}
+                        </div>
+                    {/* <DropDownList/> */}
                 
 
                 <label class="inputTitle" htmlFor="email"> 
