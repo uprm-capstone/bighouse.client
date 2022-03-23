@@ -6,6 +6,7 @@ import {Route, Navigate, BrowserRouter, Routes} from 'react-router-dom';
 import Login from './Scenes/Login';
 import Signup from './Scenes/Signup';
 import RecoverPassword from './Scenes/RecoverPassword';
+import Header from './Components/Sections/Header';
 
 ReactDOM.render(
   // <React.StrictMode>
@@ -13,9 +14,9 @@ ReactDOM.render(
   // </React.StrictMode>,
   <BrowserRouter>
         <Routes>
-            <Route exact path="/Login" element={<Login/>} />
-            <Route exact path="/Signup" element={<Signup/>} />
-            <Route exact path="/Recover-Password" element={<RecoverPassword/>} />
+            <Route exact path="/Login" element={<div class="App"><Header /><Login /></ div>} />
+            <Route exact path="/Signup" element={<div class="App"><Header /><Signup /></ div>} />
+            <Route exact path="/Recover-Password" element={<div class="App"><Header /><RecoverPassword /></ div>} />
             <Route path="*" element={<Navigate to ="/Login" />}/>
         </Routes>
     </BrowserRouter>,
