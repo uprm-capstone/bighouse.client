@@ -69,9 +69,9 @@ return(
 
         <p class='createAccount'>
             Create Account
-            <span className="createLine">
+            <span className="line">
                 
-                <a href="#"></a>
+                <a class="hyperLink" href="#"></a>
             </span>
         </p>
     </section>

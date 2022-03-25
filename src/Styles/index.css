@@ -1,27 +1,27 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
+
 
 .App {
   width: 100%;
-  max-width: 800px;
-  height: 150vh;
+  height: 100%;
+  border: 1px solid #707070;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border: 1px solid #333;
-  box-shadow: 0px 0px 10px gray;
-}
-
-#root {
-  flex-grow: 1;
-  display: flex;
+  flex-direction: column; 
   justify-content: center;
   align-items: center;
-}
+  }
+
+
+  #root {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 .staticHeader {
   display: flex;
@@ -32,108 +32,148 @@
 
 .headerImage {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
+
 
 .loginSection {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0px -8px 15px 0px gray;
+  box-shadow: 0px -8px 12px -5px gray;
   background-color: #f5f5f5;
   border-radius: 10px;
   margin-top: -20px;
-  padding: 20px;
-  padding-left: 75px;
 }
 
 .h1Gray {
-  font-size: 3rem;
+  font-family: "Segoe UI";
+  font-size: 25px;
   color: #818181;
   margin-top: 40px;
   margin-bottom: 50px;
-  align-self: flex-start;
   font-family: "Segoe UI";
-}
+  margin-left: 43px;
+  margin-right: auto;   
+  align-self: flex-start; 
+  }
+
+  @media (max-width: 500px) and (max-width: 884px) {
+
+
+  }
+
 .loginForm {
-  align-self: flex-start;
+  width: 100%;
+  align-self: flex-start;  
 }
 
 .signupSection {
   width: 100%;
-  height: 250vh;
+  height: 100%; 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  box-shadow: 0px -5px 10px 0px gray;
+  box-shadow: 0px -8px 12px -5px gray;
   background-color: #f5f5f5;
   border-radius: 10px;
   margin-top: -20px;
-  padding: 20px;
-  padding-left: 75px;
+ 
 }
 
 .signupForm {
+  width: 100%; 
   align-self: flex-start;
 }
 
+.RecPassSection {
+  width: 100%;
+  height: 651px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0px -8px 12px -5px gray;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  margin-top: -20px;
+ 
+}
+
 .inputTitle {
-  font-size: 2rem;
+  font-size: 18px; 
   font-family: "Segoe UI";
   color: #818181;
   margin-top: 20px;
+  margin-left: 43px; 
+  margin-right: auto;
 }
 
 input {
-  font-size: 1.5rem;
-  width: 90%;
-  border-radius: 9px;
+  font-size: 18px;
+  width: 80%; 
+  border-radius: 10px;
   border: 1px solid;
-  border-color: gray;
-  margin: 20px;
   margin-top: 10px;
-  margin-bottom: 60px;
-  margin-left: 0;
-  padding: 5px;
-  font-family: "Segoe UI";
-}
-
-.dropDown {
-  font-size: 1.5rem;
-  width: 90%;
-  border-radius: 9px;
-  border-color: gray;
-  margin: 20px;
-  margin-top: 10px;
-  margin-bottom: 60px;
-  margin-left: 0;
-  padding: 5px;
+  margin-bottom: 10%;
+  margin-left: 32px;
+  margin-right: auto; 
+  padding-top: 10px; 
+  padding-left: 10px; 
+  padding-bottom: 10px; 
   font-family: "Segoe UI";
 }
 
 .inputPass {
-  font-size: 1.5rem;
-  width: 90%;
-  border-radius: 9px;
-  border: 1px;
-  margin: 20px;
+  font-size: 18px;
+  width: 80%; 
+  border-radius: 10px;
+  border: 1px solid;
   margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 0;
-  padding: 5px;
+  margin-bottom: 10px; 
+  margin-left: 32px;
+  margin-right: auto; 
+  padding-top: 10px; 
+  padding-left: 10px; 
+  padding-bottom: 10px; 
   font-family: "Segoe UI";
 }
 
-.forgotPassword {
-  margin-left: 70%;
+.inputRecEmail {
+  font-size: 18px;
+  width: 80%; 
+  border-radius: 10px;
+  border: 1px solid;
+  margin-top: 10px;
+  margin-bottom: 120px; 
+  margin-left: 32px;
+  margin-right: auto; 
+  padding-top: 10px; 
+  padding-left: 10px; 
+  padding-bottom: 10px; 
   font-family: "Segoe UI";
-  color: #0e90c1;
-  margin-bottom: 100px;
 }
+
+.dropDown {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+  font-family: 'Segoe UI';
+  width: 80%;
+  border-radius: 10px;
+  border: 1.5px solid;
+  margin-top: 10px;
+  margin-bottom: 10%;
+  margin-left: 32px;
+  margin-right: auto; 
+  
+}
+
 
 button {
   background-color: #2d5fad;
@@ -141,24 +181,40 @@ button {
   border-color: gray;
   font-family: "Segoe UI";
   font-size: 1.5rem;
-  width: 500px;
-  margin-left: 55px;
+  width: 80%;
+  margin-left: 32px;
   margin-bottom: 10px;
-  padding: 8px;
-  border-radius: 9px;
+  margin-right: auto; 
+  padding: 10px; 
+  border-radius: 10px;
+}
+
+.forgotPassword {
+  margin-left: 60%;
+  font-family: "Segoe UI";
+  font-size: 1rem; 
+  color: #0e90c1;
+  margin-bottom: 100px;
 }
 
 .createAccount {
-  margin: 20px;
-  margin-right: 100px;
-  font-family: Arial;
+  
+  margin-top: 20px; 
+  font-family: "Segoe UI";
   color: #0e90c1;
 }
 
+.login{
+  margin-top: 20px; 
+  margin-left: 45%; 
+  font-family: "Segoe UI";
+  color: #0e90c1;
+}
+
+
 .hyperLink {
-  margin: 20px;
-  margin-right: 100px;
-  font-family: Arial;
+  margin-top: 20px;
+  font-family: "Segoe UI";
   color: #0e90c1;
 }
 
@@ -189,8 +245,4 @@ button {
   font-weight: bold;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-}
-
-.line {
-  display: inline-block;
 }

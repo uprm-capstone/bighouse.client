@@ -21,7 +21,7 @@ export default function RecoverPassword(){
     }, [email])
 
     return(
-        <section class='loginSection'>
+        <section class='RecPassSection'>
     
             <p ref={errRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p> 
     
@@ -29,9 +29,9 @@ export default function RecoverPassword(){
     
             <form class="loginForm">
     
-                <label class='inputTitle' htmlFor="email">Email</label> 
+                <label class='inputTitle' htmlFor="Email">Email</label> 
 
-                <input 
+                <input class="inputRecEmail"
                 type="email"
                 id="email" 
                 placeholder="Enter Email" 

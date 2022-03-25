@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
+import "../../Styles/index.css";
 
 
 export default class DropDownList extends Component {
+
 
   constructor(props){
     super(props)
@@ -33,9 +35,11 @@ export default class DropDownList extends Component {
   render() {
     console.log(this.state.selectOptions)
     return (
-      <div class="dropDown">
-        <Select options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
+
+      <div class="dropDown"> 
+        <Select  options={this.state.selectOptions} onChange={this.handleChange.bind(this)} />
       </div>
+      
     )
   }
 }

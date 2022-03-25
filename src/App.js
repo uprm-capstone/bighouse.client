@@ -11,7 +11,7 @@ function App() {
   return (
     <div class="App">
     <Header />
-    <RecoverPassword />
+    <Login />
     </ div>
 
   )
