@@ -25,7 +25,7 @@ export default function RecoverPassword(){
     
             <p ref={errRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p> 
     
-            <h1 class="h1Gray">Recover Password</h1>
+            <h1 class="h1RecPass">Recover Password</h1>
     
             <form class="loginForm">
     
@@ -43,10 +43,10 @@ export default function RecoverPassword(){
                 />
 
                 <Button name="Send Link" /> 
-                    <p class='createAccount'>
-                        Log In
+                    <p class='login'>
+                      
                         <span className="line">
-                            <a href='#'></a>
+                            <a href='#'>Login</a>
                         </span>
                     </p>
         

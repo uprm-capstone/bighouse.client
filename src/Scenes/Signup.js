@@ -273,10 +273,10 @@ const Signup = () => {
             || !validPassword || !validMatch ? true : false} />
                    
             </form>
-            <p>
+            <p class="login">
                         <span className="line">
                             {/*put router link here*/}
-                            <a class="hyperLink" href="#">Login</a>
+                            <a href="#">Login</a>
                         </span>
                     </p>
         </section>
