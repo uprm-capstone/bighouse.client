@@ -133,7 +133,7 @@ const Signup = () => {
         <form class="signupForm" onSubmit={handleSubmit}> 
 
             <label  class="inputTitle" htmlFor="firstName"> 
-               First Name: 
+               First Name 
                 </label>
                 <input 
                     type="text"
@@ -155,7 +155,7 @@ const Signup = () => {
                     </p>
 
                     <label class="inputTitle" htmlFor="lastName"> 
-                        Last Name: 
+                        Last Name 
                 </label>
                 <input 
                     type="text"
@@ -178,7 +178,7 @@ const Signup = () => {
                     </p>
 
                     <label class="inputTitle" htmlFor="dateOfBirth"> 
-                        Date of Birth: 
+                        Date of Birth
                 </label>
                 <input 
                     type="text"
@@ -199,13 +199,13 @@ const Signup = () => {
                     </p>
 
                     <label class="inputTitle" htmlFor="gender">
-                            Gender:
+                            Gender
                         </label>
-                    <DropDownList />
+                    <DropDownList class="dropDown" />
                 
 
                 <label class="inputTitle" htmlFor="email"> 
-                        Email:
+                        Email
                 </label>
                 <input 
                     type="email"
@@ -227,7 +227,7 @@ const Signup = () => {
                     </p>
 
                     <label class="inputTitle" htmlFor="password">
-                            Password:
+                            Password
                         </label>
 
                     <input
@@ -249,7 +249,7 @@ const Signup = () => {
                         </p>
 
                         <label class="inputTitle" htmlFor="confirm_pwd">
-                            Confirm Password:
+                            Confirm Password
                         </label>
 
                         <input
@@ -273,10 +273,10 @@ const Signup = () => {
             || !validPassword || !validMatch ? true : false} />
                    
             </form>
-            <p>
+            <p class="login">
                         <span className="line">
                             {/*put router link here*/}
-                            <a class="hyperLink" href="#">Login</a>
+                            <a href="#">Login</a>
                         </span>
                     </p>
         </section>

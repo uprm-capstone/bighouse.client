@@ -12,6 +12,7 @@ function App() {
     <div class="App">
     <Header />
     <RecoverPassword />
+
     </ div>
 
   )

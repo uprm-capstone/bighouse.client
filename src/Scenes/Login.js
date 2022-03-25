@@ -56,10 +56,9 @@ return(
                 /> 
                 
                 <p class='forgotPassword'>
-                    Forgot Password
-                    <span className="forgotLine">
+                    <span className="line">
 
-                        <a href='#'></a>
+                        <a href='#'> Forgot Password?</a>
                     </span>
                 </p>
 
@@ -68,10 +67,10 @@ return(
         </form>
 
         <p class='createAccount'>
-            Create Account
-            <span className="createLine">
+            
+            <span className="line">
                 
-                <a href="#"></a>
+                <a href="#">Create Account</a>
             </span>
         </p>
     </section>

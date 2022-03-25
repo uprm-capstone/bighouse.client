@@ -21,17 +21,17 @@ export default function RecoverPassword(){
     }, [email])
 
     return(
-        <section class='loginSection'>
+        <section class='RecPassSection'>
     
             <p ref={errRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p> 
     
-            <h1 class="h1Gray">Recover Password</h1>
+            <h1 class="h1RecPass">Recover Password</h1>
     
             <form class="loginForm">
     
-                <label class='inputTitle' htmlFor="email">Email</label> 
+                <label class='inputTitle' htmlFor="Email">Email</label> 
 
-                <input 
+                <input class="inputRecEmail"
                 type="email"
                 id="email" 
                 placeholder="Enter Email" 
@@ -43,10 +43,10 @@ export default function RecoverPassword(){
                 />
 
                 <Button name="Send Link" /> 
-                    <p class='createAccount'>
-                        Log In
+                    <p class='login'>
+                      
                         <span className="line">
-                            <a href='#'></a>
+                            <a href='#'>Login</a>
                         </span>
                     </p>
         
