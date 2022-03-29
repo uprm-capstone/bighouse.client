@@ -30,13 +30,14 @@
   flex-direction: column; 
   justify-content: center;
   align-items: center;
+  border-radius: 10px; 
   }
 
   @media (min-width: 500px){
     .App {
       margin: 15% 20%; 
       border: 1px solid lightgray; 
-      border-radius: 20px; 
+      /*border-radius: 20px; */
       }
   }
 
@@ -174,6 +175,20 @@
   margin-top: -20px;
 }
 
+.HomeSection{
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0px -8px 12px -5px gray;
+  border-radius: 10px;
+  background-image: url(../Styles/HomePageBackground2.png); 
+  background-position: center; 
+  background-size: cover; 
+}
+
 .inputTitle {
   font-size: 18px; 
   font-family: "Segoe UI";
@@ -306,6 +321,165 @@ button {
   }
 }
 
+.homeGray {
+  font-family: "Segoe UI";
+  font-size: 45px;
+  color: #818181;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-family: "Segoe UI";
+  margin-left: 43px;
+  margin-right: auto;   
+  align-self: flex-start; 
+  }
+
+.paymentBalanceBlock{
+  background-color: #234281;
+  color: white;
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  width: 80%;
+  margin-left: auto;
+  margin-bottom: 75px;
+  margin-right: auto; 
+  margin-top: 25px; 
+  padding: 30px 0px; 
+  border-radius: 10px;
+  
+}
+
+.utilitiesBalanceBlock{
+ background-color:#EEEEEE;
+ color: darkslategray;
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  width: 80%;
+  margin-left: auto;
+  margin-bottom: 25px;
+  margin-right: auto; 
+  padding: 15px 0px 30px; 
+  border-radius: 10px;
+  align-self: flex-start; 
+}
+
+.documentsBlock{
+  background-color:#EEEEEE;
+  color: darkslategray;
+   border-color: gray;
+   font-family: "Segoe UI";
+   font-size: 18px;
+   width: 80%;
+   margin-left: auto;
+   margin-bottom: 10px;
+   margin-right: auto; 
+   padding: 15px 0px 15px; 
+   border-radius: 10px;
+   align-self: flex-start; 
+}
+
+.issuesBlock{
+  background-color:#EEEEEE;
+  color: darkslategray;
+   border-color: gray;
+   font-family: "Segoe UI";
+   font-size: 18px;
+   width: 80%;
+   margin-left: auto;
+   margin-bottom: 25px;
+   margin-right: auto; 
+   padding: 15px 0px 30px; 
+   border-radius: 10px;
+   align-self: flex-start; 
+}
+
+.moreButton{
+  background-color: #CFCFCF;
+  color: #2d5fad;
+  font-family: "Segoe UI";
+  font-size: 12px;
+  width: 80px;
+ 
+  margin-bottom: 10px;
+  margin-right: 1px; 
+  padding: 10px 0px;
+  border-radius: 10px;
+  border-color: none; 
+  border-style: hidden; 
+}
+
+.balanceMarker{
+  background-color: #B9EBB5;
+  color: #009A1A;
+  font-family: "Segoe UI";
+  font-size: 12px;
+  width: 80px;
+  margin-right: 1px; 
+  padding: 10px; 
+  border-radius: 10px;
+  border-color: none; 
+  border-style: hidden; 
+}
+
+.statusMarker{
+  background-color: #F3BFBF;
+  color: #9C0000;
+  font-family: "Segoe UI";
+  font-size: 12px;
+  width: 80px;
+  margin-bottom: 10px;
+  margin-right: 1px; 
+  margin-left: 35px; 
+  padding: 10px;
+  border-radius: 10px;
+  border-color: none; 
+  border-style: hidden; 
+}
+
+.balanceTitle{
+  font-size: 18px; 
+  font-family: "Segoe UI";
+  padding: 5px; 
+  margin-left: 230px;
+  margin-bottom: 10px;
+  margin-right: auto; 
+}
+
+.balanceAmount{
+  font-size: 30px; 
+  font-family: "Segoe UI";
+  padding: 5px; 
+  margin-left: 170px;
+  margin-bottom: 10px;
+  margin-right: auto; 
+ 
+}
+
+.balanceReport{
+  font-size: 15px; 
+  font-family: "Segoe UI";
+  padding: 5px; 
+  margin-left: 230px;
+  margin-bottom: 10px;
+  margin-right: auto; 
+}
+
+.blockTitle{
+  font-size: 12px; 
+  font-family: "Segoe UI";
+  margin-left: 15px;
+  
+
+}
+.blockInfo{
+  font-size: 18px; 
+  font-family: "Segoe UI";
+  margin-left: 15px;
+  margin-top: 25px; 
+  margin-right: 275px; 
+}
+
 .forgotPassword {
   margin-left: 56%;
   font-family: "Segoe UI";
@@ -323,6 +497,15 @@ button {
   .forgotPassword{
     margin-left: 67%; 
   }
+}
+
+.viewMore{
+  margin-top: 20px; 
+  margin-bottom: 20px;
+  margin-left: 32px; 
+  margin-right: auto;
+  font-family: "Segoe UI";
+  color: #0e90c1;
 }
 
 .createAccount {
