@@ -3,7 +3,7 @@ import User from '../Components/Tests/User.json';
 import {useRef, useState, useEffect} from 'react';
 import '../Styles/index.css';
 import Button from '../Components/Buttons/Button.js';
-/*import HamburgerMenu from './Components/Sections/HamburgerMenu.js'; */
+import Nav from '../Components/Sections/Nav.js'; 
 
 export default function Home(){
 
@@ -21,7 +21,7 @@ export default function Home(){
     return(
         <section class="HomeSection"> 
         
-        {/*<HamburgerMenu />*/}
+        <Nav />
         <h1 class="homeGray">Hi {user.firstName}!</h1>
         <p class="homeGray"> Your next payment is scheduled for {user.paymentDueDate} </p>
 

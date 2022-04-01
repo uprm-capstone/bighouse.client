@@ -590,3 +590,24 @@ button {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
 }
+
+/*------------*/
+.hamburgerMenu{
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column nowrap;
+  z-index: 10;
+}
+.burger-part{
+  width: 32px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: black;
+  transform-origin: 1px;
+  transition: all 0.3s linear;
+}
+
+
+/*_----------*/
