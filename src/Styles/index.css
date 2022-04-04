@@ -173,7 +173,6 @@
   .staticHeader{
   height: 225px;
   border: 1px solid lightgray;
-  border-radius: 20px;
   }
 }
 
@@ -181,12 +180,6 @@
   width: 100%;
   height: 100%; 
   object-fit: cover; 
-}
-
-@media (min-width: 500px){
-  .headerImage {
-  border-radius: 18px; 
-}
 }
 /*-----------------------------------------------------*/
 
@@ -380,7 +373,7 @@
   font-size: 25px;
   color: #818181;
   margin-top: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 75px;
   font-family: "Segoe UI";
   margin-left: 43px;
   margin-right: auto;   
