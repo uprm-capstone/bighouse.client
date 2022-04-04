@@ -2,6 +2,8 @@ import { useRef, useState, useEffect} from "react";
 import DropDownList from "../Components/Inputs/DropDownList";
 import FormButton from "../Components/Buttons/FormButton";
 import "../Styles/index.css";
+import Header from '../Components/Sections/Header.js';
+
 
 
 const NAME_REGEX = /(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/;
@@ -116,6 +118,7 @@ const Signup = () => {
     return(
 
         <>
+        <Header />
         {success ? (
             <section>
                 <h1>Success!</h1>

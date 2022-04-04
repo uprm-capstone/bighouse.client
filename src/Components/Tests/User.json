@@ -1,0 +1,44 @@
+{
+    "user": {
+        "firstName": "Luis",
+        "lastName": "Romero",
+        "paymentBalance": "$100",
+        "paymentDueDate": "12/12/2022",
+        "paymentReportDate": "12/11/2022"
+    },
+
+    "utility": {
+        "utilityBalance": "$20",
+        "utilityBalanceMarker": "12^"
+    },
+
+    "document": {
+        "documentReportDate": "12/12/2022", 
+        "documentInfo": "Paid $100"
+    },
+
+    "issue": [{
+        "issueReportDate": "11/12/2022", 
+        "issueTitle": "Broken Door",
+        "issueStatusMarker" : "Open"
+    },
+
+    {
+        "issueReportDate": "10/9/2022", 
+        "issueTitle": "Bathroom Smell",
+        "issueStatusMarker" : "Closed"
+    }, 
+
+    {
+        "issueReportDate": "9/9/2022", 
+        "issueTitle": "Burnt ceiling",
+        "issueStatusMarker" : "Closed"
+    },
+
+    {
+        "issueReportDate": "9/9/2022", 
+        "issueTitle": "Burnt ceiling",
+        "issueStatusMarker" : "Closed"
+    }
+]
+}

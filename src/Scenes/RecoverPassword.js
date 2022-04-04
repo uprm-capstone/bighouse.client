@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect} from "react";
 import Input from '../Components/Inputs/Input';
 import Button from '../Components/Buttons/Button'; 
+import Header from '../Components/Sections/Header.js';
+
 
 
 export default function RecoverPassword(){
@@ -21,6 +23,8 @@ export default function RecoverPassword(){
     }, [email])
 
     return(
+        <>
+        <Header />
         <section class='RecPassSection'>
     
             <p ref={errRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p> 
@@ -52,6 +56,7 @@ export default function RecoverPassword(){
         
             </form>
         </section>
+        </>
     )
 
 }

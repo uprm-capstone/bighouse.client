@@ -1,6 +1,7 @@
 import React from 'react'
 import {useRef, useState, useEffect} from 'react';
 import '../Styles/index.css';
+import Header from '../Components/Sections/Header.js';
 
 
 export default function Login(){
@@ -23,6 +24,8 @@ export default function Login(){
 
 
 return(
+    <>
+    <Header /> 
     <section class='loginSection'>
 
         <p ref={errRef} className={errorMessage ? "errorMessage" : "offscreen"} aria-live="assertive">{errorMessage}</p> 
@@ -74,5 +77,6 @@ return(
             </span>
         </p>
     </section>
+    </>
 )
 }
