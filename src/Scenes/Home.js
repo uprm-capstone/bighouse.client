@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios'; 
 import User from '../Components/Tests/User.json'; 
 import {useRef, useState, useEffect} from 'react';
 import '../Styles/index.css';
@@ -8,15 +9,51 @@ import Nav from '../Components/Sections/Nav.js';
 export default function Home(){
 
     /*Test User*/
-    const [user, setUser] = useState(User.user); 
-    const [document, setDocument] = useState(User.document); 
-    const [issue, setIssue] = useState(User.issue); 
-    const [utility, setUtility] = useState(User.utility); 
+    const [user, setUser] = useState(User.user)
+    const [document, setDocument] = useState(User.document)
+    const [apartmentCost, setApartmentCost] = useState('')
+    const [issue, setIssue] = useState(User.issue) 
+    const [utility, setUtility] = useState(User.utility)
+    const [utilityCost, setUtilityCost] = useState('')
 
 
 
+/*Axios for name, payment info, utilities info, etc. */
 
- /*Axios for name, payment info, utilities info, etc. */
+    const api = axios.create({
+        baseURL: 'http://localhost:8008/'
+     })
+
+    /*Get User*/
+    api.get('users/user').then(res => {
+          setUser(res)
+    })
+
+    /*Get Payment Balance MISSING PAYMENT DUE DATE, AND REPORTED ON DATE*/
+    api.get('apartments/apartment-cost').then(res => {
+        setApartmentCost(res)
+    })
+
+    /*Get Issues*/
+    api.get('issues/').then(res => {
+        setIssue(res)
+    })
+
+    /*Get Utility*/
+    api.get('utility/get-apartment-utilities').then(res => {
+        setUtility(res)
+    })
+
+    /*Get Utility Cost*/
+    api.get('utility/get-utility-total').then(res => {
+        setUtilityCost(res)
+    })
+
+
+    /*Get Documents*/
+    api.get('documents/').then(res => {
+        setDocument(res)
+    })
 
     return(
         <section class="HomeSection"> 

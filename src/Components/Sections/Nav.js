@@ -26,7 +26,7 @@ return (
      <li><a href='#'>Login</a></li>  
  </ul>
 
-    <div className="hamburgerMenu" onClick={handleToggle}> 
+    <div onClick={handleToggle}> 
         <HamburgerMenu />
     </div>
     
@@ -40,7 +40,8 @@ return (
                     display:flex;
                     flex-wrap: wrap;
                     float: right;
-                    margin: 0px;
+                    margin-top: 10px;
+                    margin-right: 10px; 
                     padding: 0px;
                     overflow: hidden;
                 }
@@ -52,25 +53,46 @@ return (
                     display: none;
                     z-index: 6;
                 } 
+                .hamburgerX{
+                    display: none; 
+                    z-index: 6; 
+                }
+
                 @media (max-width: 767px){
                   
                     .hamburgerMenu{
-                        display:block;
+                        display: ${navbarOpen ? 'none' : 'block'};
                         padding-top: 10px;
-                        margin-left: 10px;
+                        margin-left: 165px;
                         z-index: 6;
                     }
                 
                    
+                    .hamburgerX{
+                        display: ${navbarOpen ? 'block' : 'none'};
+                        margin-left: 165px;
+                        z-index: 10; 
+                    }
+
                     .navBar ul{
                         display: ${navbarOpen ? 'inline' : 'none'};
                         background-color: #FFFFFF;
                         border-color: #707070;
-                        height: 100vh;
+                        box-shadow: 0px 0px 5px 0px gray;
+                        height: 100%;
                         width: 50vw;
-                        margin-top: 50px;
+                        padding-top: 80px; 
                         position: fixed;
+                        left: 200px; 
+
                         
+                    }
+
+                    .navBar li{
+
+                        padding-left: 25px; 
+                        padding-top: 5px;
+                        padding-bottom: 1px; 
                     }
                 }
                 
