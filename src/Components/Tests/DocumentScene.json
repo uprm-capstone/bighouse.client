@@ -1,0 +1,33 @@
+{
+    "user": {
+        "firstName": "Luis",
+        "lastName": "Romero", 
+        "id": "4"
+    },
+
+    
+    "document": [{
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "function" : "eSign"
+    },
+
+    {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "function" : "eSign"
+    }, 
+
+    {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "function" : "eSign"
+    },
+
+    {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "function" : "eSign"
+    }
+]
+}
