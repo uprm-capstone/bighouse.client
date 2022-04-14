@@ -4,6 +4,7 @@ import FormButton from "../Components/Buttons/FormButton";
 import "../Styles/index.css";
 import Header from '../Components/Sections/Header.js';
 import axios from "axios";
+import Select from 'react-select';
 
 
 
@@ -45,6 +46,12 @@ const Signup = () => {
 
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
+
+    const getOptions = [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
+        { value: 'other', label: 'Other' }
+    ]
 
 
     useEffect(() => {
@@ -96,6 +103,11 @@ const Signup = () => {
     useEffect(() => {
         setErrorMessage('');
     }, [firstName, lastName, date, gender, email, password, matchPassword])
+
+    
+    const handleChange = (e) => {
+        setGender(e.value);
+      };
 
    
     const handleSubmit = async (e) => {
@@ -224,10 +236,11 @@ const Signup = () => {
                         Must follow the MM/DD/YYYY format. 
                     </p>
 
-                    <label class="inputTitle" htmlFor="gender">
-                            Gender
-                        </label>
-                    <DropDownList class="dropDown" />
+                    <label class="inputTitle" htmlFor="gender">Gender</label>
+
+                    <div class="dropDown">
+                        <Select options={getOptions} onChange={handleChange} />
+                    </div>
                 
 
                 <label class="inputTitle" htmlFor="email"> 
