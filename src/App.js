@@ -5,7 +5,7 @@ import Login from './Scenes/Login';
 import Signup from './Scenes/Signup';
 import RecoverPassword from './Scenes/RecoverPassword';
 import Home from './Scenes/Home';
-import Documents from './Scenes/Home'; 
+import Documents from './Scenes/Documents'; 
 
 
 function App() {

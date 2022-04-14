@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'; 
-import User from '../Components/Tests/DocumentScene.json'; 
+import Document from '../Components/Tests/DocumentScene.json'; 
 import {useRef, useState, useEffect} from 'react';
 import '../Styles/index.css';
 import Button from '../Components/Buttons/Button.js';
@@ -9,8 +9,8 @@ import Nav from '../Components/Sections/Nav.js';
 export default function Home(){
 
     /*Test User*/
-    const [user, setUser] = useState(User.user)
-    const [document, setDocument] = useState(User.document)
+    const [user, setUser] = useState(Document.user)
+    const [document, setDocument] = useState(Document.documents)
 
 
 
@@ -30,19 +30,21 @@ export default function Home(){
         setDocument(res)
     })
 
+    const functionHandler = () => {
+      
+    }
+
     return(
         <section class="documentSection"> 
         
         <Nav />
-        <h1 class="homeGray"> Documents </h1>
+        <h1 class="documentHeader"> Documents </h1>
 
         {document.map(document => (
-        <div class="documentsBlock">
-            <label class="blockTitle"> TEMP {document.documentReportDate}</label> <br />
-            <div className="subBlock" > 
-            <label class="blockInfo"> {document.documentInfo} </label>
-            <Button name= {document.function} class="moreButton" />
-            </div>
+        <div class="document">
+            <label class="blockTitle"> Created on {document.creation}</label> <br />
+            <label class="blockInfo"> {document.title} </label> <br />
+            <Button name={document.function} onClick={functionHandler} class="documentButton" />
         </div>
         ))}
 
