@@ -3,6 +3,7 @@ import DropDownList from "../Components/Inputs/DropDownList";
 import FormButton from "../Components/Buttons/FormButton";
 import "../Styles/index.css";
 import Header from '../Components/Sections/Header.js';
+import axios from "axios";
 
 
 
@@ -113,12 +114,22 @@ const Signup = () => {
         setSuccess(true);
     }
 
-    const createNewUser = () => {
+    const createUser =(e)=>{
+        e.preventDefault();
+        const user = {
+            user_name: firstName,
+            user_lastname: lastName,
+            user_gender: gender,
+            user_birth: date,
+            user_email: email
+        };
+
+        console.log(user);
 
         axios.post(`http://localhost:8008/users/create-user`, user )
         .then(res => {
             console.log(res);
-            setSucessText(res.data);
+            // setSucessText(res.data);
             window.location.href = window.location.origin+"/Login";
         })
         .catch((error) => {

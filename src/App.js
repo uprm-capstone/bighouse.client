@@ -12,7 +12,7 @@ function App() {
   return (
     <div class="App">
     
-    <RecoverPassword />
+    <Signup />
 
     </ div>
 
