@@ -295,8 +295,10 @@ const Signup = () => {
                         </p>
 
 
-                        <FormButton name="Sign Up" disabled={!validFirstName || !validLastName || !validDate || !validEmail
-            || !validPassword || !validMatch ? true : false} />
+                        {/* <FormButton name="Sign Up" disabled={!validFirstName || !validLastName || !validDate || !validEmail
+            || !validPassword || !validMatch ? true : false} /> */}
+
+            <button onClick={createUser}>Sign Up</button>
                    
             </form>
             <p class="login">
