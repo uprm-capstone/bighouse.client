@@ -113,7 +113,48 @@ const Signup = () => {
         setSuccess(true);
     }
 
-  
+    const createNewUser = () => {
+        if (localStorage.getItem('User')) {
+            console.log("User already logged in.")
+            console.log(JSON.parse(localStorage.getItem('User')))
+            return
+        }
+
+        let url = 'http://localhost:8008/users/create-user'
+
+        axios({
+            method: 'POST',
+            url: url
+        })
+        .then((res) => {
+            let data = res.data
+
+            // we have all users, check if email exists within them
+            for (let i = 0; i < data.length; i++) {
+                if (data[i]['user_email'] == email.value) {
+                    if (data[i]['user_password'] == password.value){
+                        localStorage.setItem('User', JSON.stringify(data[i]))
+                        console.log("Matched: ", data[i])
+                        break
+                    }
+                    else{
+                        console.log("Password doesn't match.")
+                        break
+                    }
+                }
+                if (i == data.length - 1)
+                    console.log("Email not found.")   
+            }
+                
+            if (!localStorage.getItem('User'))
+                console.log("Login failed.")
+            else{
+                console.log("Login successful.")
+                window.location.href = window.location.origin+"/UserView"
+            }
+        })
+        
+    }
 
     return(
 
