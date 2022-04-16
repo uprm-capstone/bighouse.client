@@ -12,16 +12,11 @@ function App() {
 
   return (
     <div class="App">
-<<<<<<< HEAD
-    
-    <Home />
-=======
     <Login />
     <RecoverPassword />
     <Signup /> 
     <Home /> 
     <Documents />
->>>>>>> staging
 
     </ div>
 
