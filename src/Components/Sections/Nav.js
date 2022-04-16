@@ -33,19 +33,25 @@ return (
     <style jsx>{`
                 .navBar{
                     width: 100%;
-                    height: 50px;
+                    height: 100%;
                 }
                 
                 .navBar ul{
                     display:flex;
                     flex-wrap: wrap;
-                    float: right;
-                    margin-top: 10px;
-                    margin-right: 10px; 
+                    
                     padding: 0px;
                     overflow: hidden;
                 }
+                @media (min-width: 500px){
+                    .navBar ul {
+                    margin-top: 10px;
+                    margin-left: 175px; 
+                    margin-right: auto; 
+                    }
+                }
                 .navBar ul li{
+                    font-family: "Segoe UI";
                     list-style-type: none;
                     padding-right: 10px;
                 }
@@ -88,14 +94,47 @@ return (
                         
                     }
 
-                    .navBar li{
-
+                    .navBar li{ 
                         padding-left: 25px; 
                         padding-top: 5px;
                         padding-bottom: 1px; 
                     }
                 }
-                
+
+                @media (min-width: 768px) and (max-width: 860px){
+                  
+                    .hamburgerMenu{
+                        display: ${navbarOpen ? 'none' : 'block'};
+                        padding-top: 10px;
+                        margin-left: 55%;
+                        z-index: 6;
+                    }
+                  
+                    .hamburgerX{
+                        display: ${navbarOpen ? 'block' : 'none'};
+                        margin-left: 55%;
+                        z-index: 10; 
+                    }
+
+                    .navBar ul{
+                        display: ${navbarOpen ? 'inline' : 'none'};
+                        margin-top: 0px; 
+                        background-color: #FFFFFF;
+                        border-color: #707070;
+                        box-shadow: 0px 0px 5px 0px gray;
+                        height: 100%;
+                        width: 40vw;
+                        padding-top: 80px; 
+                        position: fixed;
+                        left: 45%;  
+                    }
+
+                    .navBar li{ 
+                        padding-left: 25px; 
+                        padding-top: 5px;
+                        padding-bottom: 1px; 
+                    }
+                }
                
                 
             `}</style>

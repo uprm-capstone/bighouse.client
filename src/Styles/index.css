@@ -29,8 +29,7 @@
   display: flex;
   flex-direction: column; 
   justify-content: center;
-  align-items: center;
-  border-radius: 10px; 
+  align-items: center; 
   }
 
   @media (min-width: 500px){
@@ -472,19 +471,20 @@
   align-self: flex-start; 
 }
 
+/*Used in Home Scene and Documents Scene*/
 .documentsBlock{
   background-color:#EEEEEE;
   color: darkslategray;
-   border-color: gray;
-   font-family: "Segoe UI";
-   font-size: 18px;
-   width: 80%;
-   margin-left: auto;
-   margin-bottom: 10px;
-   margin-right: auto; 
-   padding: 15px 0px 15px; 
-   border-radius: 10px;
-   align-self: flex-start; 
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  width: 80%;
+  margin-left: auto;
+  margin-bottom: 10px;
+  margin-right: auto; 
+  padding: 15px 0px 15px; 
+  border-radius: 10px;
+  align-self: flex-start; 
 }
 
 .issuesBlock{
@@ -594,4 +594,78 @@
   font-family: "Segoe UI";
   color: #0e90c1;
 }
+/*-----------------------------------------------------*/
+
+
+
+/*----Documents Scene----*/
+
+.documentSection{
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #F5F5F5;
+  box-shadow: 0px -8px 12px -5px gray;
+  background-position: center; 
+  background-size: cover; 
+}
+
+.documentHeader {
+  font-family: "Segoe UI";
+  font-size: 25px;
+  color: #818181;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  font-family: "Segoe UI";
+  margin-left: 43px;
+  margin-right: auto;   
+  align-self: flex-start; 
+  }
+
+@media (min-width: 500px){
+.documentHeader {
+  font-size: 45px;
+  }
+}
+
+.document {
+  background-color:#FFFFFF;
+  color: darkslategray;
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  width: 80%;
+  margin-left: auto;
+  margin-bottom: 20px;
+  margin-right: auto; 
+  padding: 15px 0px 15px; 
+  border-radius: 10px;
+  align-self: flex-start; 
+}
+
+@media (min-width: 860px){
+  .document{
+    margin-left: 43px; 
+    width: 90%;
+  }
+}
+
+  .documentButton{
+    background-color: #CFCFCF;
+    color: #2d5fad;
+    font-family: "Segoe UI";
+    font-size: 12px;
+    width: 100px; 
+    margin-top: 20px; 
+    margin-left: 15px; 
+    margin-right: 20px; 
+    margin-bottom: 10px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    border-color: none; 
+    border-style: hidden; 
+  }
 /*-----------------------------------------------------*/
