@@ -317,7 +317,7 @@ const Signup = () => {
             <p class="login">
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Login</a>
+                            <a href={window.location.origin+"/Login"}>Login</a>
                         </span>
                     </p>
         </section>

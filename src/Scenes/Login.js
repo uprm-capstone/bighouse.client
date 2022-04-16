@@ -61,7 +61,7 @@ return(
                 <p class='forgotPassword'>
                     <span className="line">
 
-                        <a href='#'> Forgot Password?</a>
+                        <a href={window.location.origin+"/Recover-Password"}> Forgot Password?</a>
                     </span>
                 </p>
 
@@ -73,7 +73,7 @@ return(
             
             <span className="line">
                 
-                <a href="#">Create Account</a>
+                <a href={window.location.origin+"/Signup"}>Create Account</a>
             </span>
         </p>
     </section>

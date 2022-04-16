@@ -161,7 +161,7 @@ export default function Home(){
 
         <h1 class="h1Gray"> Recent Issues</h1>
 
-        {/* {issue.map(issue => (
+        {issue.map(issue => (
         <div class="issuesBlock">
     
             <label class="blockTitle"> Opened on {issue.issueReportDate} </label> <br />
@@ -172,7 +172,7 @@ export default function Home(){
             </div>
         </div>
 
-        ))} */}
+        ))}
 
         <p class="viewMore"> 
             <span className="line">

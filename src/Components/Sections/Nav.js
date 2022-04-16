@@ -16,14 +16,14 @@ export default function Nav (){
 return (
   <nav className="navBar">
  <ul>
-     <li><a href='#'>Home</a></li>
+     <li><a href={window.location.origin+"/Home"}>Home</a></li>
      <li><a href='#'>Payments</a></li>
      <li><a href='#'>Issues</a></li>
-     <li><a href='#'>Documents</a></li>
+     <li><a href={window.location.origin+"/Documents"}>Documents</a></li>
      <li><a href='#'>Payment History</a></li>
      <br /> 
      <li><a href='#'>Account</a></li>
-     <li><a href='#'>Login</a></li>  
+     <li><a href={window.location.origin+"/Login"}>Login</a></li>  
  </ul>
 
     <div onClick={handleToggle}> 
