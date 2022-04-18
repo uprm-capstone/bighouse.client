@@ -39,10 +39,10 @@ export default function Home(){
 
     const issueStatus = (status) =>{
         if(status){
-            return 'open';
+            return 'pending';
         }
         else{
-            return 'closed';
+            return 'solved';
         }
     }
     
@@ -56,6 +56,14 @@ export default function Home(){
         }
     }
 
+    const uBalancePercent = ()=>{
+        if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
+            return "v"+balanaceComp*100;
+        }
+        else{
+            return "^"+balanaceComp*100;
+        }
+    }
 
     useEffect(() => {
         const apartment = {
@@ -112,15 +120,13 @@ export default function Home(){
         .then(res => {
                 setLastPayment(res.data);
                 if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
-                    setBalanaceComp(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1);
+                    setBalanaceComp("^"+((parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1)*100).toFixed(2));
                     setBalance("statusMarker");
                 }
                 else{
-                    setBalanaceComp(parseFloat(1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)));
+                    setBalanaceComp("^"+(parseFloat((1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)))*100).toFixed(2));
                     setBalance("balanceMarker");
                 }
-                console.log("Utility cost is: "+utilityCost+"\nLast payment is: "+lastPayment);
-                console.log("THE RESULT IS:"+ balanaceComp);
             })
             .catch((error) => {
                 console.log(error);
@@ -158,7 +164,7 @@ export default function Home(){
             <label class="blockTitle"> Utilities Balance</label> <br />
             <div className="subBlock"> 
             <label class="blockInfo"> {parseFloat(utilityCost).toFixed(2)} </label>
-            <label class={balance}>{balanaceComp.toFixed(2)+"^"}</label>
+            <label class={balance}>{balanaceComp+"%"}</label>
             </div>
         </div>
 
