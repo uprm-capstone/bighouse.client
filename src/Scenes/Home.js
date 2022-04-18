@@ -19,7 +19,7 @@ export default function Home(){
     const [totalCost, setTotalCost] = useState(apartmentCost+utilityCost);
     const [lastPayment, setLastPayment] = useState(0);
     const [balanaceComp, setBalanaceComp] = useState(0);
-    const [balance, setBalannce] = useState('');
+    const [balance, setBalance] = useState('');
 
     const [year, setYear] = useState(new Date().getFullYear())
 
@@ -46,6 +46,15 @@ export default function Home(){
         }
     }
     
+    // Returns green or red based on the issue status
+    const issuesCheck = (e) =>{
+        if(e){
+            return "balanceMarker";
+        }
+        else{
+            return "statusMarker";
+        }
+    }
 
 
     useEffect(() => {
@@ -104,11 +113,11 @@ export default function Home(){
                 setLastPayment(res.data);
                 if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
                     setBalanaceComp(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1);
-                    setBalannce("statusMarker");
+                    setBalance("statusMarker");
                 }
                 else{
                     setBalanaceComp(parseFloat(1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)));
-                    setBalannce("balanceMarker");
+                    setBalance("balanceMarker");
                 }
                 console.log("Utility cost is: "+utilityCost+"\nLast payment is: "+lastPayment);
                 console.log("THE RESULT IS:"+ balanaceComp);
@@ -173,7 +182,7 @@ export default function Home(){
 
             <div class="subBlock"> 
             <label class="blockInfo"> {issue.title} </label>
-            <label class="statusMarker">{issueStatus(issue.status)}</label>
+            <label class={issuesCheck(issue.status)}>{issueStatus(issue.status)}</label>
             </div>
         </div>
 

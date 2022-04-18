@@ -50,7 +50,7 @@ export default function Home(){
 
         {document.map(document => (
         <div class="document">
-            <label class="blockTitle"> Created on </label> <br />
+            <label class="blockTitle"> Created on {document.date_created}</label> <br />
             <label class="blockInfo"> {document.document} </label> <br />
             {signChecker(document)}
         </div>
