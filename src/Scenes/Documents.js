@@ -12,27 +12,35 @@ export default function Home(){
     const [user, setUser] = useState(Document.user)
     const [document, setDocument] = useState(Document.documents)
 
-
-
-/*Axios for name, payment info, utilities info, etc. */
-
-    const api = axios.create({
-        baseURL: 'http://localhost:8008/'
-     })
-
-    /*Get User*/
-    api.get('users/user').then(res => {
-          setUser(res)
-    })
-
-    /*Get Documents*/
-    api.get('documents/').then(res => {
-        setDocument(res)
-    })
-
     const functionHandler = () => {
       
     }
+
+    const signChecker = (d) =>{
+        if(d.require_signature){
+            return <Button name="eSign" onClick={functionHandler} class="documentButton" />;
+        }
+        else{
+            return;
+        }
+    }
+
+    useEffect(() => {
+
+        /*Get Documents*/
+        axios({
+            method: 'GET',
+            params: {user_id:3},
+            url: `http://localhost:8008/documents/get-user-documents`
+        })
+        .then(res => {
+                setDocument(res.data);
+            })
+        .catch((error) => {
+            console.log(error);
+        })
+
+    }, []);
 
     return(
         <section class="documentSection"> 
@@ -42,9 +50,9 @@ export default function Home(){
 
         {document.map(document => (
         <div class="document">
-            <label class="blockTitle"> Created on {document.creation}</label> <br />
-            <label class="blockInfo"> {document.title} </label> <br />
-            <Button name={document.function} onClick={functionHandler} class="documentButton" />
+            <label class="blockTitle"> Created on </label> <br />
+            <label class="blockInfo"> {document.document} </label> <br />
+            {signChecker(document)}
         </div>
         ))}
 

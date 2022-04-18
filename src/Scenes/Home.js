@@ -9,17 +9,17 @@ import Nav from '../Components/Sections/Nav.js';
 export default function Home(){
 
     /*Test User*/
-    const [user, setUser] = useState(User.user)
-    const [userName, setUserName] = useState('')
-    const [document, setDocument] = useState(User.document)
-    const [apartmentCost, setApartmentCost] = useState('')
-    const [issue, setIssue] = useState(User.issue) 
-    const [utility, setUtility] = useState(User.utility)
-    const [utilityCost, setUtilityCost] = useState('')
-    const [totalCost, setTotalCost] = useState(apartmentCost+utilityCost)
-    const [lastPayment, setLastPayment] = useState(0)
-    const [balanaceComp, setBalanaceComp] = useState(0)
-    const [balance, setBalannce] = useState('')
+    const [user, setUser] = useState(User.user);
+    const [userName, setUserName] = useState('');
+    const [document, setDocument] = useState(User.document);
+    const [apartmentCost, setApartmentCost] = useState('');
+    const [issue, setIssue] = useState(User.issue) ;
+    const [utility, setUtility] = useState(User.utility);
+    const [utilityCost, setUtilityCost] = useState('');
+    const [totalCost, setTotalCost] = useState(apartmentCost+utilityCost);
+    const [lastPayment, setLastPayment] = useState(0);
+    const [balanaceComp, setBalanaceComp] = useState(0);
+    const [balance, setBalannce] = useState('');
 
     const [year, setYear] = useState(new Date().getFullYear())
 
@@ -27,11 +27,9 @@ export default function Home(){
         let holder = new Date().getMonth();
         if(holder>=12){
             setYear(new Date().getFullYear()+1);
-            console.log(year);
             return 1;
         }
         else{
-            console.log(year);
             return new Date().getMonth()+2;
         }
     }
@@ -39,11 +37,18 @@ export default function Home(){
     const [month, setMonth] = useState(nMonth)
     
 
+    const issueStatus = (status) =>{
+        if(status){
+            return 'open';
+        }
+        else{
+            return 'closed';
+        }
+    }
     
 
 
     useEffect(() => {
-        console.log("Entered UseEffect:")
         const apartment = {
             apartment_id:3
         };
@@ -55,8 +60,6 @@ export default function Home(){
             url: `http://localhost:8008/users/user`
         })
         .then(res => {
-                console.log("PAYMENT:")
-                console.log(res.data);
                 setUserName(res.data.user_name);
             })
             .catch((error) => {
@@ -70,62 +73,64 @@ export default function Home(){
             url: `http://localhost:8008/apartments/apartment-total-cost`
         })
         .then(res => {
-                console.log("RESULT:")
-                console.log(res.data.apartment_cost);
-                setApartmentCost(res.data.apartment_cost)
-                console.log(apartmentCost)
+            setApartmentCost(res.data.apartment_cost);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+        //Gets utility cost
+        axios({
+            method: 'GET',
+            params: apartment,
+            url: `http://localhost:8008/utility/get-utility-total`
+        })
+        .then(res => {
+            setUtilityCost(res.data.total_cost);
+            const holder = parseFloat(apartmentCost+utilityCost).toFixed(2);
+            setTotalCost(holder);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+        // Get payment data
+        axios({
+            method: 'GET',
+            params: {user_id:3},
+            url: `http://localhost:8008/payments/get-payment-user`
+        })
+        .then(res => {
+                setLastPayment(res.data);
+                if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
+                    setBalanaceComp(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1);
+                    setBalannce("statusMarker");
+                }
+                else{
+                    setBalanaceComp(parseFloat(1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)));
+                    setBalannce("balanceMarker");
+                }
+                console.log("Utility cost is: "+utilityCost+"\nLast payment is: "+lastPayment);
+                console.log("THE RESULT IS:"+ balanaceComp);
             })
             .catch((error) => {
                 console.log(error);
             })
 
-            //Gets utility cost
-            axios({
-                method: 'GET',
-                params: apartment,
-                url: `http://localhost:8008/utility/get-utility-total`
+        // Get Issues data
+        axios({
+            method: 'GET',
+            params: {apartment_id:3},
+            url: `http://localhost:8008/issues/get-apartment-issues`
+        })
+        .then(res => {
+                setIssue(res.data);
             })
-            .then(res => {
-                    console.log("RESULT:")
-                    console.log(res.data.total_cost);
-                    setUtilityCost(res.data.total_cost)
-                    console.log(apartmentCost)
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-            var holder = parseFloat(apartmentCost+utilityCost).toFixed(2);
-            console.log("TOTAL COST: "+holder);
-            setTotalCost(holder);
-
-            // Get payment data
-            axios({
-                method: 'GET',
-                params: {user_id:3},
-                url: `http://localhost:8008/payments/get-payment-user`
+            .catch((error) => {
+                console.log(error);
             })
-            .then(res => {
-                    console.log("PAYMENT:")
-                    console.log(res.data);
-                    setLastPayment(res.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
 
-            if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
-                setBalanaceComp(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1);
-                console.log("Balance is: "+balanaceComp);
-                setBalannce("statusMarker");
-            }
-            else{
-                setBalanaceComp(parseFloat(1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)));
-                console.log("Balance is: "+balanaceComp);
-                setBalannce("balanceMarker");
-            }
-
-
-    })
+    }, [totalCost,balanaceComp]);
 
     return(
         <section class="HomeSection"> 
@@ -164,11 +169,11 @@ export default function Home(){
         {issue.map(issue => (
         <div class="issuesBlock">
     
-            <label class="blockTitle"> Opened on {issue.issueReportDate} </label> <br />
+            <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
 
             <div class="subBlock"> 
-            <label class="blockInfo"> {issue.issueTitle} </label>
-            <label class="statusMarker">{issue.issueStatusMarker}</label>
+            <label class="blockInfo"> {issue.title} </label>
+            <label class="statusMarker">{issueStatus(issue.status)}</label>
             </div>
         </div>
 
