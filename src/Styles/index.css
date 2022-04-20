@@ -75,6 +75,24 @@
     margin-left: 43px; 
     margin-right: auto;
   }
+
+  .subTitle {
+    font-size: 28px; 
+    font-family: "Segoe UI";
+    color: #818181;
+    margin-top: 20px;
+    margin-left: 50px; 
+    margin-right: auto;
+    margin-bottom: 25px;
+  }
+
+  .navBar {
+    position: fixed;
+  }
+
+  .reportButton {
+    text-align: center;
+  }
   
   @media (min-width: 500px){
     .inputTitle{
@@ -601,6 +619,19 @@
 /*----Documents Scene----*/
 
 .documentSection{
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #F5F5F5;
+  box-shadow: 0px -8px 12px -5px gray;
+  background-position: center; 
+  background-size: cover; 
+}
+
+.issueSection{
   width: 100%;
   height: 100%; 
   display: flex;
