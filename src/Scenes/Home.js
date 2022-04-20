@@ -13,7 +13,7 @@ export default function Home(){
     const [userName, setUserName] = useState('');
     const [document, setDocument] = useState(User.document);
     const [apartmentCost, setApartmentCost] = useState('');
-    const [issue, setIssue] = useState(User.issue) ;
+    const [issue, setIssue] = useState() ;
     const [utility, setUtility] = useState(User.utility);
     const [utilityCost, setUtilityCost] = useState('');
     const [totalCost, setTotalCost] = useState(apartmentCost+utilityCost);
@@ -34,8 +34,25 @@ export default function Home(){
         }
     }
 
-    const [month, setMonth] = useState(nMonth)
+    const [month, setMonth] = useState(nMonth);
+
+    const homeMessage = () =>{
+        if(localStorage.getItem('Apartment')){
+            return ("Your next payment is scheduled for "+month+"/1/"+year) 
+        }
+        else{
+            return "No apartment has been appointed at this moment"
+        }
+    }
     
+    const unpaidBalance = () =>{
+        if(totalCost){
+            return totalCost;
+        }
+        else{
+            return '0.00';
+        }
+    }
 
     const issueStatus = (status) =>{
         if(status){
@@ -56,94 +73,268 @@ export default function Home(){
         }
     }
 
-    const uBalancePercent = ()=>{
-        if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
-            return "v"+balanaceComp*100;
+    const currentUBalance = () =>{
+        if(utilityCost){
+            return parseFloat(utilityCost).toFixed(2);
         }
         else{
-            return "^"+balanaceComp*100;
+            return "No available balance";
+        }
+    }
+
+    const showBalance = () =>{
+        if(balanaceComp){
+            console.log("Has a value");
+            return balanaceComp+"%";
+        }
+        else{
+            return "N/A";
+        }
+    }
+
+    const displayLastPayment = () =>{
+        if(lastPayment.total){
+            return ("$"+lastPayment.total);
+        }
+        else{
+            return "No payment data to show";
+        }
+    }
+
+    const moreButton = () => {
+        if(lastPayment.total){
+            return (<Button name="More" class="moreButton" />)
+        }
+        else{
+            return;
+        }
+    }
+
+    const issueChecker = () => {
+        if(issue){
+            console.log(issue);
+            console.log("THERE ARE ISSUES");
+            return issue.map(issue => (
+                <div class="issuesBlock">
+            
+                    <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
+        
+                    <div class="subBlock"> 
+                    <label class="blockInfo"> {issue.title} </label>
+                    <label class={issuesCheck(issue.status)}>{issueStatus(issue.status)}</label>
+                    </div>
+                </div>
+                ));
+        }
+        else{
+            return (<div class="issuesBlock">
+            
+                    <label class="blockTitle"> </label> <br />
+        
+                    <div class="subBlock"> 
+                    <label class="blockInfo"> No issue to display </label>
+                    <label class="balanceMarker">N/A</label>
+                    </div>
+                </div>)
         }
     }
 
     useEffect(() => {
-        const apartment = {
-            apartment_id:3
-        };
+        if(localStorage.getItem('Token')==null){
+            window.location.href = window.location.origin+'/Login';
+        }
 
-        // Gets user name
+        // Validates user's token. If not valid, logs him/her out.
         axios({
             method: 'GET',
-            params: {user_id:3},
-            url: `http://localhost:8008/users/user`
+            params: {token:localStorage.getItem('Token')},
+            url: `http://localhost:8008/validate`
         })
         .then(res => {
-                setUserName(res.data.user_name);
+            console.log("TOKEN RES: "+res);
+            console.log(res);
+
+            if(!res.data){
+
+                console.log("ENTERED IF");
+
+                console.log("GOT THE ERROR");
+                localStorage.removeItem('User');
+                localStorage.removeItem('Apartment');
+                localStorage.removeItem('Token');
+            
+                window.location.href = window.location.origin+'/Login';
+                return;
+
+            }
+            // Gets user name
+            axios({
+                method: 'GET',
+                params: {user_id:localStorage.getItem('User')},
+                url: `http://localhost:8008/users/user`
+            })
+            .then(res => {
+                    setUserName(res.data.user_name);
             })
             .catch((error) => {
                 console.log(error);
             })
 
-        //Gets apartment cost
-        axios({
-            method: 'GET',
-            params: apartment,
-            url: `http://localhost:8008/apartments/apartment-total-cost`
-        })
-        .then(res => {
-            setApartmentCost(res.data.apartment_cost);
+            //Gets apartment cost
+            axios({
+                method: 'GET',
+                params: {apartment_id: localStorage.getItem('Apartment')},
+                url: `http://localhost:8008/apartments/apartment-total-cost`
+            })
+            .then(res => {
+                setApartmentCost(res.data.apartment_cost);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+            //Gets utility cost
+            axios({
+                method: 'GET',
+                params: {apartment_id: localStorage.getItem('Apartment')},
+                url: `http://localhost:8008/utility/get-utility-total`
+            })
+            .then(res => {
+                setUtilityCost(res.data.total_cost);
+                const holder = parseFloat(apartmentCost+utilityCost).toFixed(2);
+                setTotalCost(holder);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+            // Get payment data
+            axios({
+                method: 'GET',
+                params: {user_id:localStorage.getItem('User')},
+                url: `http://localhost:8008/payments/get-payment-user`
+            })
+            .then(res => {
+                    setLastPayment(res.data);
+                    if(utilityCost){
+                        if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
+                            setBalanaceComp("⌃"+((parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1)*100).toFixed(0));
+                            setBalance("statusMarker");
+                        }
+                        else{
+                            setBalanaceComp("⌃"+(parseFloat((1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)))*100).toFixed(0));
+                            setBalance("balanceMarker");
+                        }
+                    }
+                    else{
+                        setBalance("balanceMarker");
+                    }
+                    
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+
+            // Get Issues data
+            axios({
+                method: 'GET',
+                params: {apartment_id: localStorage.getItem('Apartment')},
+                url: `http://localhost:8008/issues/get-apartment-issues`
+            })
+            .then(res => {
+                console.log("ISSUES FOR APARTMENT ARE: "+res);
+                    setIssue(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
         })
         .catch((error) => {
-            console.log(error);
+            console.log("ERROR:" + error);
         })
 
-        //Gets utility cost
-        axios({
-            method: 'GET',
-            params: apartment,
-            url: `http://localhost:8008/utility/get-utility-total`
-        })
-        .then(res => {
-            setUtilityCost(res.data.total_cost);
-            const holder = parseFloat(apartmentCost+utilityCost).toFixed(2);
-            setTotalCost(holder);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
+        // // Gets user name
+        // axios({
+        //     method: 'GET',
+        //     params: {user_id:localStorage.getItem('User')},
+        //     url: `http://localhost:8008/users/user`
+        // })
+        // .then(res => {
+        //         setUserName(res.data.user_name);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // })
 
-        // Get payment data
-        axios({
-            method: 'GET',
-            params: {user_id:3},
-            url: `http://localhost:8008/payments/get-payment-user`
-        })
-        .then(res => {
-                setLastPayment(res.data);
-                if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
-                    setBalanaceComp("^"+((parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1)*100).toFixed(2));
-                    setBalance("statusMarker");
-                }
-                else{
-                    setBalanaceComp("^"+(parseFloat((1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)))*100).toFixed(2));
-                    setBalance("balanceMarker");
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        // //Gets apartment cost
+        // axios({
+        //     method: 'GET',
+        //     params: {apartment_id: localStorage.getItem('Apartment')},
+        //     url: `http://localhost:8008/apartments/apartment-total-cost`
+        // })
+        // .then(res => {
+        //     setApartmentCost(res.data.apartment_cost);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // })
 
-        // Get Issues data
-        axios({
-            method: 'GET',
-            params: {apartment_id:3},
-            url: `http://localhost:8008/issues/get-apartment-issues`
-        })
-        .then(res => {
-                setIssue(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        // //Gets utility cost
+        // axios({
+        //     method: 'GET',
+        //     params: {apartment_id: localStorage.getItem('Apartment')},
+        //     url: `http://localhost:8008/utility/get-utility-total`
+        // })
+        // .then(res => {
+        //     setUtilityCost(res.data.total_cost);
+        //     const holder = parseFloat(apartmentCost+utilityCost).toFixed(2);
+        //     setTotalCost(holder);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // })
+
+        // // Get payment data
+        // axios({
+        //     method: 'GET',
+        //     params: {user_id:localStorage.getItem('User')},
+        //     url: `http://localhost:8008/payments/get-payment-user`
+        // })
+        // .then(res => {
+        //         setLastPayment(res.data);
+        //         if(utilityCost){
+        //             if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
+        //                 setBalanaceComp("⌃"+((parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1)*100).toFixed(0));
+        //                 setBalance("statusMarker");
+        //             }
+        //             else{
+        //                 setBalanaceComp("⌃"+(parseFloat((1-parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost)))*100).toFixed(0));
+        //                 setBalance("balanceMarker");
+        //             }
+        //         }
+        //         else{
+        //             setBalance("balanceMarker");
+        //         }
+                
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
+
+        // // Get Issues data
+        // axios({
+        //     method: 'GET',
+        //     params: {apartment_id: localStorage.getItem('Apartment')},
+        //     url: `http://localhost:8008/issues/get-apartment-issues`
+        // })
+        // .then(res => {
+        //     console.log("ISSUES FOR APARTMENT ARE: "+res);
+        //         setIssue(res.data);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // })
 
     }, [totalCost,balanaceComp]);
 
@@ -151,28 +342,29 @@ export default function Home(){
         <section class="HomeSection"> 
         <Nav />
         <h1 class="homeGray">Hi {userName}!</h1>
-        <p class="homeGray"> Your next payment is scheduled for {month}/1/{year} </p>
+        <p class="homeGray"> {homeMessage()} </p>
 
 
         <div class="paymentBalanceBlock">
             <label class="balanceTitle"> Unpaid Balance </ label> <br />
-            <label class="balanceAmount"> {totalCost} </ label> <br />
+            <label class="balanceAmount"> {unpaidBalance()} </ label> <br />
             <label class="balanceReport"> reported on {user.paymentReportDate} </label>         
         </div> 
 
         <div class="utilitiesBalanceBlock">
             <label class="blockTitle"> Utilities Balance</label> <br />
             <div className="subBlock"> 
-            <label class="blockInfo"> {parseFloat(utilityCost).toFixed(2)} </label>
-            <label class={balance}>{balanaceComp+"%"}</label>
+            <label class="blockInfo"> {currentUBalance()} </label>
+            <label class={balance}>{showBalance()}</label>
             </div>
         </div>
 
         <div class="documentsBlock">
             <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
             <div className="subBlock" > 
-            <label class="blockInfo"> ${lastPayment.total} </label>
-            <Button name="More" class="moreButton" />
+            <label class="blockInfo"> {displayLastPayment()} </label>
+            {moreButton()}
+            {/* <Button name="More" class="moreButton" /> */}
             </div>
         </div>
 
@@ -181,7 +373,9 @@ export default function Home(){
 
         <h1 class="h1Gray"> Recent Issues</h1>
 
-        {issue.map(issue => (
+        {issueChecker()}
+
+        {/* {issue.map(issue => (
         <div class="issuesBlock">
     
             <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
@@ -192,7 +386,7 @@ export default function Home(){
             </div>
         </div>
 
-        ))}
+        ))} */}
 
         <p class="viewMore"> 
             <span className="line">

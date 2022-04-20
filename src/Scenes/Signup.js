@@ -124,10 +124,7 @@ const Signup = () => {
         }
         console.log(firstName, lastName, date, gender, email, password);
         setSuccess(true);
-    }
 
-    const createUser =(e)=>{
-        e.preventDefault();
         const user = {
             user_name: firstName,
             user_lastname: lastName,
@@ -135,13 +132,27 @@ const Signup = () => {
             user_birth: date,
             user_email: email
         };
+        const aUser ={
+            email:email,
+            password:password,
+            roles:["boss"]
+        }
 
-        console.log(user);
+        console.log("Staring axios");
 
+        // Creates user in authentication table
+        axios.post(`http://localhost:8008/auth-create`, aUser )
+        .then(res => {
+            console.log(res);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+        // Creates user in main Data Base.
         axios.post(`http://localhost:8008/users/create-user`, user )
         .then(res => {
             console.log(res);
-            // setSucessText(res.data);
             window.location.href = window.location.origin+"/Login";
         })
         .catch((error) => {
@@ -311,7 +322,7 @@ const Signup = () => {
                         {/* <FormButton name="Sign Up" disabled={!validFirstName || !validLastName || !validDate || !validEmail
             || !validPassword || !validMatch ? true : false} /> */}
 
-            <button onClick={createUser}>Sign Up</button>
+            <button>Sign Up</button>
                    
             </form>
             <p class="login">

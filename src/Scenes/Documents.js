@@ -26,11 +26,14 @@ export default function Home(){
     }
 
     useEffect(() => {
-
+        if(localStorage.getItem('Token')==null){
+            window.location.href = window.location.origin+'/Login';
+        }
+        
         /*Get Documents*/
         axios({
             method: 'GET',
-            params: {user_id:3},
+            params: {user_id:localStorage.getItem('User')},
             url: `http://localhost:8008/documents/get-user-documents`
         })
         .then(res => {
