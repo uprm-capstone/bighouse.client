@@ -24,7 +24,7 @@ return (
                     flex-flow: column nowrap;
                     position: absolute; 
                     top: 20px; 
-                    left: 160px; 
+                    left: -35px; 
                     z-index: 10;
                 }
                 .hamburgerPart{

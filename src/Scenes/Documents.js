@@ -48,7 +48,7 @@ export default function Home(){
     return(
         <section class="documentSection"> 
         
-        <Nav />
+        <div><Nav/></div>
         <h1 class="documentHeader"> Documents </h1>
 
         {document.map(document => (

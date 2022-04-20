@@ -112,9 +112,8 @@ export default function Home(){
 
     const issueChecker = () => {
         if(issue){
-            console.log(issue);
-            console.log("THERE ARE ISSUES");
-            return issue.map(issue => (
+            let counter = 0;
+            return issue.map(issue => (counter++<4)?(
                 <div class="issuesBlock">
             
                     <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
@@ -124,7 +123,7 @@ export default function Home(){
                     <label class={issuesCheck(issue.status)}>{issueStatus(issue.status)}</label>
                     </div>
                 </div>
-                ));
+                ):null);
         }
         else{
             return (<div class="issuesBlock">
@@ -259,7 +258,7 @@ export default function Home(){
 
     return(
         <section class="HomeSection"> 
-        <Nav />
+        <div><Nav/></div>
         <h1 class="homeGray">Hi {userName}!</h1>
         <p class="homeGray"> {homeMessage()} </p>
 
