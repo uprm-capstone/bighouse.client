@@ -6,7 +6,7 @@ import Nav from '../Components/Sections/Nav.js';
 
 export default function Issues(){
 
-    const [issue, setIssue] = useState() ;
+    const [issue, setIssue] = useState();
 
 
     const issueStatus = (status) =>{
@@ -87,34 +87,40 @@ export default function Issues(){
         }
     }
 
+    const handle = () => {
+        window.location.href = window.location.origin+'/New-Issue';
+    }
+
     useEffect(() => {
         if(localStorage.getItem('Token')==null){
             window.location.href = window.location.origin+'/Login';
         }
+        
+        // UNCOMMENT AFTER AXIOS IMPLEMENTATION TO THE OTHER SCENES TO THE CURRENT BRANCH.
 
         // Validates user's token. If not valid, logs him/her out.
-        axios({
-            method: 'GET',
-            params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
-        })
-        .then(res => {
-            console.log("TOKEN RES: "+res);
-            console.log(res);
+        // axios({
+        //     method: 'GET',
+        //     params: {token:localStorage.getItem('Token')},
+        //     url: `http://localhost:8008/validate`
+        // })
+        // .then(res => {
+        //     console.log("TOKEN RES: "+res);
+        //     console.log(res);
 
-            if(!res.data){
+        //     if(!res.data){
 
-                console.log("ENTERED IF");
+        //         console.log("ENTERED IF");
 
-                console.log("GOT THE ERROR");
-                localStorage.removeItem('User');
-                localStorage.removeItem('Apartment');
-                localStorage.removeItem('Token');
+        //         console.log("GOT THE ERROR");
+        //         localStorage.removeItem('User');
+        //         localStorage.removeItem('Apartment');
+        //         localStorage.removeItem('Token');
             
-                window.location.href = window.location.origin+'/Login';
-                return;
+        //         window.location.href = window.location.origin+'/Login';
+        //         return;
 
-            }
+        //     }
 
             // Get Issues data
             axios({
@@ -130,17 +136,18 @@ export default function Issues(){
                 console.log(error);
             })
 
-        })
-        .catch((error) => {
-            console.log("ERROR:" + error);
-        })
+        // })
+        // .catch((error) => {
+        //     console.log("ERROR:" + error);
+        // })
 
-    }, [issue]);
+    }, []);
 
     return(
         <section class="issueSection"> 
-
-        <Nav/>
+    
+        <div><Nav/></div>
+        
 
         <h1 class="h1Gray"> Issues</h1>
 
@@ -152,7 +159,7 @@ export default function Issues(){
 
         {issueSolved()}
 
-        <button className='reportButton'>Report new issue</button>
+        <button className='reportButton' onClick={handle}>Report new issue</button>
         </section>
     )
 }

@@ -20,45 +20,45 @@ export default function Home(){
 
 /*Axios for name, payment info, utilities info, etc. */
 
-    const api = axios.create({
-        baseURL: 'http://localhost:8008/'
-     })
+    // const api = axios.create({
+    //     baseURL: 'http://localhost:8008/'
+    //  })
 
-    /*Get User*/
-    api.get('users/user').then(res => {
-          setUser(res)
-    })
+    // /*Get User*/
+    // api.get('users/user').then(res => {
+    //       setUser(res)
+    // })
 
-    /*Get Payment Balance MISSING PAYMENT DUE DATE, AND REPORTED ON DATE*/
-    api.get('apartments/apartment-cost').then(res => {
-        setApartmentCost(res)
-    })
+    // /*Get Payment Balance MISSING PAYMENT DUE DATE, AND REPORTED ON DATE*/
+    // api.get('apartments/apartment-cost').then(res => {
+    //     setApartmentCost(res)
+    // })
 
-    /*Get Issues*/
-    api.get('issues/').then(res => {
-        setIssue(res)
-    })
+    // /*Get Issues*/
+    // api.get('issues/').then(res => {
+    //     setIssue(res)
+    // })
 
-    /*Get Utility*/
-    api.get('utility/get-apartment-utilities').then(res => {
-        setUtility(res)
-    })
+    // /*Get Utility*/
+    // api.get('utility/get-apartment-utilities').then(res => {
+    //     setUtility(res)
+    // })
 
-    /*Get Utility Cost*/
-    api.get('utility/get-utility-total').then(res => {
-        setUtilityCost(res)
-    })
+    // /*Get Utility Cost*/
+    // api.get('utility/get-utility-total').then(res => {
+    //     setUtilityCost(res)
+    // })
 
 
-    /*Get Documents*/
-    api.get('documents/').then(res => {
-        setDocument(res)
-    })
+    // /*Get Documents*/
+    // api.get('documents/').then(res => {
+    //     setDocument(res)
+    // })
 
     return(
         <section class="HomeSection"> 
         
-        <Nav />
+        <div><Nav /></div>
         <h1 class="homeGray">Hi {user.firstName}!</h1>
         <p class="homeGray"> Your next payment is scheduled for {user.paymentDueDate} </p>
 
@@ -105,7 +105,7 @@ export default function Home(){
 
         <p class="viewMore"> 
             <span className="line">
-            <a href='#'>View More...</a> 
+            <a href={window.location.origin+'/Issues'}>View More...</a> 
             </span> 
         </p>
         </section>

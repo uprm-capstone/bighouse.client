@@ -16,19 +16,19 @@ export default function Home(){
 
 /*Axios for name, payment info, utilities info, etc. */
 
-    const api = axios.create({
-        baseURL: 'http://localhost:8008/'
-     })
+    // const api = axios.create({
+    //     baseURL: 'http://localhost:8008/'
+    //  })
 
-    /*Get User*/
-    api.get('users/user').then(res => {
-          setUser(res)
-    })
+    // /*Get User*/
+    // api.get('users/user').then(res => {
+    //       setUser(res)
+    // })
 
-    /*Get Documents*/
-    api.get('documents/').then(res => {
-        setDocument(res)
-    })
+    // /*Get Documents*/
+    // api.get('documents/').then(res => {
+    //     setDocument(res)
+    // })
 
     const functionHandler = () => {
       
@@ -37,7 +37,7 @@ export default function Home(){
     return(
         <section class="documentSection"> 
         
-        <Nav />
+        <div><Nav /></div>
         <h1 class="documentHeader"> Documents </h1>
 
         {document.map(document => (
