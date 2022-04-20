@@ -17,8 +17,8 @@ return (
   <nav className="navBar">
  <ul>
      <li><a href={window.location.origin+"/Home"}>Home</a></li>
-     <li><a href='#'>Payments</a></li>
-     <li><a href='#'>Issues</a></li>
+     <li><a href={window.location.origin+"/Payment"}>Payments</a></li>
+     <li><a href={window.location.origin+"/Issues"}>Issues</a></li>
      <li><a href={window.location.origin+"/Documents"}>Documents</a></li>
      <li><a href='#'>Payment History</a></li>
      <br /> 

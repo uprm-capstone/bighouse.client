@@ -6,7 +6,7 @@ import '../Styles/index.css';
 import Button from '../Components/Buttons/Button.js';
 import Nav from '../Components/Sections/Nav.js'; 
 
-export default function Home(){
+export default function Issues(){
 
     /*Test User*/
     const [user, setUser] = useState(User.user);
@@ -36,26 +36,8 @@ export default function Home(){
 
     const [month, setMonth] = useState(nMonth);
 
-    const homeMessage = () =>{
-        if(localStorage.getItem('Apartment')){
-            return ("Your next payment is scheduled for "+month+"/1/"+year) 
-        }
-        else{
-            return "No apartment has been appointed at this moment"
-        }
-    }
-    
-    const unpaidBalance = () =>{
-        if(totalCost){
-            return totalCost;
-        }
-        else{
-            return '0.00';
-        }
-    }
-
     const issueStatus = (status) =>{
-        if(status){
+        if(!status){
             return 'pending';
         }
         else{
@@ -65,7 +47,7 @@ export default function Home(){
     
     // Returns green or red based on the issue status
     const issuesCheck = (e) =>{
-        if(!e){
+        if(e){
             return "balanceMarker";
         }
         else{
@@ -73,33 +55,6 @@ export default function Home(){
         }
     }
 
-    const currentUBalance = () =>{
-        if(utilityCost){
-            return parseFloat(utilityCost).toFixed(2);
-        }
-        else{
-            return "No available balance";
-        }
-    }
-
-    const showBalance = () =>{
-        if(balanaceComp){
-            console.log("Has a value");
-            return balanaceComp+"%";
-        }
-        else{
-            return "N/A";
-        }
-    }
-
-    const displayLastPayment = () =>{
-        if(lastPayment.total){
-            return ("$"+lastPayment.total);
-        }
-        else{
-            return "No payment data to show";
-        }
-    }
 
     const moreButton = () => {
         if(lastPayment.total){
@@ -110,11 +65,11 @@ export default function Home(){
         }
     }
 
-    const issueChecker = () => {
+    const issueUnsolved = () => {
         if(issue){
             console.log(issue);
             console.log("THERE ARE ISSUES");
-            return issue.map(issue => (
+            return issue.map(issue => !issue.status?(
                 <div class="issuesBlock">
             
                     <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
@@ -124,7 +79,36 @@ export default function Home(){
                     <label class={issuesCheck(issue.status)}>{issueStatus(issue.status)}</label>
                     </div>
                 </div>
-                ));
+                ):(null));
+        }
+        else{
+            return (<div class="issuesBlock">
+            
+                    <label class="blockTitle"> </label> <br />
+        
+                    <div class="subBlock"> 
+                    <label class="blockInfo"> No issue to display </label>
+                    <label class="balanceMarker">N/A</label>
+                    </div>
+                </div>)
+        }
+    }
+
+    const issueSolved = () => {
+        if(issue){
+            console.log(issue);
+            console.log("THERE ARE ISSUES");
+            return issue.map(issue => issue.status?(
+                <div class="issuesBlock">
+            
+                    <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
+        
+                    <div class="subBlock"> 
+                    <label class="blockInfo"> {issue.title} </label>
+                    <label class={issuesCheck(issue.status)}>{issueStatus(issue.status)}</label>
+                    </div>
+                </div>
+                ):null);
         }
         else{
             return (<div class="issuesBlock">
@@ -258,41 +242,19 @@ export default function Home(){
     }, [totalCost,balanaceComp]);
 
     return(
-        <section class="HomeSection"> 
-        <Nav />
-        <h1 class="homeGray">Hi {userName}!</h1>
-        <p class="homeGray"> {homeMessage()} </p>
+        <section class="issueSection"> 
 
+        <Nav/>
 
-        <div class="paymentBalanceBlock">
-            <label class="balanceTitle"> Unpaid Balance </ label> <br />
-            <label class="balanceAmount"> {unpaidBalance()} </ label> <br />
-            <label class="balanceReport"> reported on {user.paymentReportDate} </label>         
-        </div> 
+        <h1 class="h1Gray"> Issues</h1>
 
-        <div class="utilitiesBalanceBlock">
-            <label class="blockTitle"> Utilities Balance</label> <br />
-            <div className="subBlock"> 
-            <label class="blockInfo"> {currentUBalance()} </label>
-            <label class={balance}>{showBalance()}</label>
-            </div>
-        </div>
+        <label class='subTitle'>Unsolved issues</label> 
 
-        <div class="documentsBlock">
-            <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
-            <div className="subBlock" > 
-            <label class="blockInfo"> {displayLastPayment()} </label>
-            {moreButton()}
-            {/* <Button name="More" class="moreButton" /> */}
-            </div>
-        </div>
+        {issueUnsolved()}
 
+        <label class='subTitle'>Solved issues</label> 
 
-        {/*Issues need to be added dynamically in a list */}
-
-        <h1 class="h1Gray"> Recent Issues</h1>
-
-        {issueChecker()}
+        {issueSolved()}
 
         {/* {issue.map(issue => (
         <div class="issuesBlock">
@@ -307,11 +269,7 @@ export default function Home(){
 
         ))} */}
 
-        <p class="viewMore"> 
-            <span className="line">
-            <a href={window.location.origin+"/Issues"}>View More...</a> 
-            </span> 
-        </p>
+        <button className='reportButton'>Report new issue</button>
         </section>
     )
 }
