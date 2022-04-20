@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'; 
-import { useState, useRef} from 'react';
+import { useState } from 'react';
 import '../Styles/index.css';
 import Nav from '../Components/Sections/Nav.js'; 
 
@@ -10,86 +10,30 @@ export default function OpenIssue(){
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [description, setDescription] = useState('');
-    const status = true;
-    const dateCreated = currentDate.getFullYear()+'-'+currentDate.getMonth()+''+currentDate.getDay();
-    const dateClosed = currentDate.getFullYear()+'-'+currentDate.getMonth()+''+currentDate.getDay();
+    const status = false;
+    const dateCreated = currentDate.getFullYear()+'-'+(currentDate.getMonth()+1)+'-'+currentDate.getDate();
+    const dateClosed = currentDate.getFullYear()+'-'+(currentDate.getMonth()+1)+'-'+currentDate.getDate();
 
 
     const handleSubmit = () => {
+        const newIssue = {
+            title: title,
+            apartment_id : localStorage.getItem('Apartment'),
+            status : status,
+            date_created : dateCreated.toString(),
+            date_closed : dateClosed.toString(),
+            description : description,
+            issue_type : type
+        }
 
-        axios({
-                method: 'POST',
-                params: {
-                    title: title,
-                    apartment_id : localStorage.getItem('Apartment'),
-                    status : status,
-                    date_created : dateCreated,
-                    date_closed : dateClosed,
-                    description : description,
-                    issue_type : type
-                },
-                url: `http://localhost:8008/issues/create-issue`
-            })
-            .then(res => {
-                console.log(res);
-                // window.location.href = window.location.origin+'/Issues';
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        axios.post(`http://localhost:8008/issues/create-issue`, newIssue )
+        .then(res => {
+            window.location.href = window.location.origin+'/Issues';
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
-
-    // useEffect(() => {
-    //     if(localStorage.getItem('Token')==null){
-    //         window.location.href = window.location.origin+'/Login';
-    //     }
-        
-    //     // UNCOMMENT AFTER AXIOS IMPLEMENTATION TO THE OTHER SCENES TO THE CURRENT BRANCH.
-
-    //     // Validates user's token. If not valid, logs him/her out.
-    //     // axios({
-    //     //     method: 'GET',
-    //     //     params: {token:localStorage.getItem('Token')},
-    //     //     url: `http://localhost:8008/validate`
-    //     // })
-    //     // .then(res => {
-    //     //     console.log("TOKEN RES: "+res);
-    //     //     console.log(res);
-
-    //     //     if(!res.data){
-
-    //     //         console.log("ENTERED IF");
-
-    //     //         console.log("GOT THE ERROR");
-    //     //         localStorage.removeItem('User');
-    //     //         localStorage.removeItem('Apartment');
-    //     //         localStorage.removeItem('Token');
-            
-    //     //         window.location.href = window.location.origin+'/Login';
-    //     //         return;
-
-    //     //     }
-
-    //         // Get Issues data
-    //         axios({
-    //             method: 'GET',
-    //             params: {apartment_id: localStorage.getItem('Apartment')},
-    //             url: `http://localhost:8008/issues/get-apartment-issues`
-    //         })
-    //         .then(res => {
-    //             console.log("ISSUES FOR APARTMENT ARE: "+res);
-    //                 setIssue(res.data);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-
-    //     // })
-    //     // .catch((error) => {
-    //     //     console.log("ERROR:" + error);
-    //     // })
-
-    // }, [issue]);
 
     return(
         <section class="issueSection"> 
