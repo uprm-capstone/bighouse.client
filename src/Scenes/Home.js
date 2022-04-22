@@ -187,6 +187,7 @@ export default function Home(){
             })
             .then(res => {
                 setApartmentCost(res.data.apartment_cost);
+                localStorage.setItem('aCost', apartmentCost);
             })
             .catch((error) => {
                 console.log(error);
@@ -200,6 +201,7 @@ export default function Home(){
             })
             .then(res => {
                 setUtilityCost(res.data.total_cost);
+                localStorage.setItem('uCost', utilityCost);
                 const holder = parseFloat(apartmentCost+utilityCost).toFixed(2);
                 setTotalCost(holder);
                 localStorage.setItem('Pay',totalCost);
