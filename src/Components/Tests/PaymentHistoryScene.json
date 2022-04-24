@@ -1,0 +1,34 @@
+{
+    "user": {
+        "firstName": "Luis",
+        "lastName": "Romero", 
+        "id": "4"
+    },
+
+    
+    "payment": [{
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "total" : "375"
+    },
+
+    {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "total" : "440"
+    }, 
+
+    
+    {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "total" : "650"
+    },
+
+    {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "total" : "550"
+    }
+]
+}
