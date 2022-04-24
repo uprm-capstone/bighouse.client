@@ -130,7 +130,8 @@ const Signup = () => {
             user_lastname: lastName,
             user_gender: gender,
             user_birth: date,
-            user_email: email
+            user_email: email,
+            password: password
         };
         const aUser ={
             email:email,

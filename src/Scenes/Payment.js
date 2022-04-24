@@ -62,6 +62,8 @@ export default function PaymentForm() {
             //     console.log("Successful payment")
             // }
             console.log(response);
+            
+            window.location.href = window.location.origin + '/Home';
 
         } catch (error) {
             console.log("Error", error)

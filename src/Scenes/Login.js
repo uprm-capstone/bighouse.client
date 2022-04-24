@@ -32,40 +32,48 @@ export default function Login(){
 
         axios({
             method: 'GET',
-            params: {user_email:user},
-            url: `http://localhost:8008/users/user-by-email`
+            params: {user_email:user, password:password},
+            url: `http://localhost:8008/users/verify`
         })
             .then(res => {
-                let data = res.data;
-                console.log(res);
-                localStorage.setItem('User', data.user_id);
+                if(res.data != ''){
 
-                // Gets apartment which user occupies
-                axios({
-                    method: 'GET',
-                    params: {user_id:data.user_id},
-                    url: `http://localhost:8008/occupy/get-apartment-occupant-with-user`
-                })
-                .then(res => {
-                    let aData = res.data;
-                    console.log(aData);
-                    console.log("In array: "+aData[0].apartment_id);
-                    localStorage.setItem('Apartment', aData[0].apartment_id);
-
-                    })
-
-                // Authorizes and logs user
-                axios({
-                    method: 'GET',
-                    params: aUser,
-                    url: `http://localhost:8008/authorization`
-                })
-                .then(res => {
+                    console.log("Passed verify");
+                    let data = res.data;
                     console.log(res);
-                    localStorage.setItem('Token', res.data.tocken);
+                    localStorage.setItem('User', data.user_id);
 
-                    window.location.href = window.location.origin+'/Home';
+                    // Gets apartment which user occupies
+                    axios({
+                        method: 'GET',
+                        params: {user_id:data.user_id},
+                        url: `http://localhost:8008/occupy/get-apartment-occupant-with-user`
                     })
+                    .then(res => {
+                        let aData = res.data;
+                        console.log(aData);
+                        console.log("In array: "+aData[0].apartment_id);
+                        localStorage.setItem('Apartment', aData[0].apartment_id);
+
+                        })
+
+                    // Authorizes and logs user
+                    axios({
+                        method: 'GET',
+                        params: aUser,
+                        url: `http://localhost:8008/authorization`
+                    })
+                    .then(res => {
+                        console.log(res);
+                        localStorage.setItem('Token', res.data.tocken);
+
+                        window.location.href = window.location.origin+'/Home';
+                        })
+                }
+                else{
+                    console.log("No user");
+                    window.location.href = window.location.origin+'/Login';
+                }
 
                 })
             .catch((error) => {

@@ -9,6 +9,11 @@ export default function Nav (){
 
   const [navbarOpen, setNavbarOpen] = useState(false)
 
+  const logout = () => {
+      localStorage.removeItem('User');
+      window.location.href = window.location.origin+"/Login";
+  }
+
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen)
   }
@@ -23,7 +28,7 @@ return (
      <li><a href='#'>Payment History</a></li>
      <br /> 
      <li><a href='#'>Account</a></li>
-     <li><a href={window.location.origin+"/Login"}>Login</a></li>  
+     <li><a onClick={logout}>Log out</a></li>  
  </ul>
 
     <div onClick={handleToggle}> 
