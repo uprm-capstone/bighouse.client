@@ -760,3 +760,147 @@
 /*-----------------------------------------------------*/
 
 
+
+/*----View Payment Scene----*/
+
+.viewPaymentSection{
+  width: 100%;
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #F5F5F5;
+  box-shadow: 0px -8px 12px -5px gray;
+  background-position: center; 
+  background-size: cover; 
+}
+
+.viewPayment {
+  display: flex; 
+  flex-direction: column;
+  background-color:#FFFFFF;
+  color: darkslategray;
+  border-color: gray;
+  width: 85%;
+  margin-left: auto;
+  margin-top: 45px;
+  margin-bottom: 20px;
+  margin-right: auto; 
+  padding: 20px 10px 20px 10px; 
+  border-radius: 10px;
+}
+
+.aptLandlordBlock{
+  background-color: #EEEEEE;
+  color: darkslategray;
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  width: 80%;
+  margin-left: auto;
+  margin-bottom: 30px;
+  margin-right: auto; 
+  padding: 10px 0px 10px; 
+  border-radius: 10px;
+  
+}
+.viewPaymentRent{
+  font-family: "Segoe UI";
+  font-size: 18px;
+  color: darkslategray;
+  margin-left: 43px; 
+  word-spacing: 150px;
+}
+
+
+@media  (min-width: 860px){
+  .viewPaymentRent{
+      word-spacing: 456px;
+      margin-left: 70px; 
+}
+}
+
+.viewPaymentData{
+  font-family: "Segoe UI";
+  font-size: 18px;
+  color: darkslategray;
+  margin-left: 43px;
+  word-spacing: 127px;
+}
+
+ @media  (min-width: 860px){
+   .viewPaymentData{
+       word-spacing: 433px;
+       margin-left: 70px; 
+}
+ }
+
+.line{
+  height: 2px; 
+  background-color: #EEEEEE; 
+  margin-bottom: 15px; 
+}
+
+.viewPaymentTotal{
+  font-family: "Segoe UI";
+  font-size: 18px;
+  color: darkslategray;
+  margin-left: 43px; 
+  word-spacing: 145px; 
+  font-weight: bold; 
+  margin-bottom: 45px; 
+}
+
+
+@media  (min-width: 860px){
+  .viewPaymentTotal{
+      word-spacing: 450px;
+      margin-left: 70px; 
+}
+}
+
+
+.cardBlock{
+  font-family: "Segoe UI";
+  font-size: 18px;
+  color: darkslategray; 
+  background-color: #FFFFFF;
+  width: 80%;
+  margin-left: auto;
+  margin-bottom: 40px;
+  margin-right: auto; 
+  padding: 20px 10px; 
+  border-radius: 10px;
+  border: 1px solid gray; 
+  
+ 
+}
+
+.paymentSentDate{
+  font-family: "Segoe UI";
+  font-size: 18px;
+  font-weight: bold;
+  color: darkslategray;
+  margin-left: auto; 
+  margin-right: auto;
+  margin-bottom: 45px; 
+}
+
+
+
+.downloadReceiptButton {
+  background-color: #2d5fad;
+  color: white;
+  border-color: gray;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 10px;
+  margin-right: auto; 
+  padding: 10px 0px; 
+  border-radius: 10px;
+
+}
+/*-----------------------------------------------------*/

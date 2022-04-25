@@ -1,5 +1,6 @@
 import React from 'react';
 import PaymentHistoryScene from '../Components/Tests/PaymentHistoryScene.json'; 
+import ViewPayment from '../Scenes/ViewPayment.js';
 import {useRef, useState, useEffect} from 'react';
 import '../Styles/index.css';
 import Button from '../Components/Buttons/Button.js';
@@ -10,7 +11,9 @@ export default function PaymentHistory(){
     const [payment, setPayments] = useState(PaymentHistoryScene.payment)
 
 /*Axios*/
-
+const handleToggle = () => {
+   
+  }
 
     return(
 
@@ -24,7 +27,7 @@ export default function PaymentHistory(){
         <div class="payment">
             <label class="blockTitle"> Payment sent on {payment.creation}</label> <br />
             <label class="blockInfo"> ${payment.total} </label>
-            <Button name="More" class="morePayment" />   
+            <Button name="More" onClick={handleToggle} class="morePayment" />   
         </div>
         ))}
 

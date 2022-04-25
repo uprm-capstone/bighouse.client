@@ -1,36 +1,50 @@
 import React from 'react';
-import PaymentHistoryScene from '../Components/Tests/PaymentHistoryScene.json'; 
 import {useState} from 'react';
+import ViewPaymentScene from '../Components/Tests/ViewPaymentScene.json'; 
 import '../Styles/index.css';
 import Button from '../Components/Buttons/Button.js';
+import Xbutton from '../Components/Buttons/Xbutton.js';
 
 
-export default function PaymentHistory(){
+export default function ViewPayment(){
      
-    const [payment, setPayments] = useState(PaymentHistoryScene.payment)
+
+    const [user, setUser] = useState(ViewPaymentScene.user)
+    const [receipt, setReceipt] = useState(ViewPaymentScene.receipt)
+    const [landlord, setLandlord] = useState(ViewPaymentScene.landlord)
+    const [apartment, setApartment] = useState(ViewPaymentScene.apartment)
 
 /*Axios*/
-
 
     return(
 
         <section class="viewPaymentSection"> 
         
-        <div> X BUTTON </div>
+        <div> <Xbutton /> </div>
         <h1 class="paymentHistoryHeader"> Payment </h1>
-  
-
-        {payment.map(payment => (
+        
+     
         <div class="viewPayment">
-            <div class="payment">
-            <label class="blockTitle"> Payment sent on {payment.creation}</label> <br />
-            <label class="blockInfo"> ${payment.total} </label>
+            <div class="aptLandlordBlock">
+            <label class="blockTitle"> Landlord:  {landlord.firstName} {landlord.lastName} </label> <br />
+            <label class="blockInfo"> {apartment.address} </label>
             </div>
-            <Button name="Download Receipt" class="downloadReceipt"/>   
-       </div>
-        ))}
 
-        </section>
+            <div class="viewPaymentRent"> Rent ${receipt.rent} </div> <br />
+            <div class="viewPaymentData"> Parking ${receipt.parking} </div><br />
+            <div class="viewPaymentData"> Utilities ${receipt.utilities} </div><br />
+
+            <div class="line"> </div>
+
+            <div class="viewPaymentTotal"> Total ${receipt.total} </div><br />
+            <div class="cardBlock"> Ending in: ...{receipt.cardNumber} {receipt.card} </div>
+
+            <div class="paymentSentDate"> Payment sent on {receipt.creation} </ div> 
+
+
+            <Button name="Download Receipt" class="downloadReceiptButton"/>  
+       </div>
+    </section>
     )
 }
 
