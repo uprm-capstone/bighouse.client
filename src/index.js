@@ -8,6 +8,7 @@ import Signup from './Scenes/Signup';
 import RecoverPassword from './Scenes/RecoverPassword';
 import Home from './Scenes/Home';
 import Documents from './Scenes/Documents';
+import PaymentHistory from './Scenes/PaymentHistory';
 
 
 ReactDOM.render(
@@ -23,6 +24,7 @@ ReactDOM.render(
     <Route exact path="/Recover-Password" element={<div class="App"><RecoverPassword /></ div>} />
     <Route exact path="/Home" element={<div class="App"><Home /></ div>} />
     <Route exact path="/Documents" element={<div class="App"><Documents /></ div>} />
+    <Route exact path ="/Payment-History" element={<div class="App"> <PaymentHistory /></ div>} />
     <Route path="*" element={<Navigate to ="/Login" />}/>
     
 </Routes>

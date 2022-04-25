@@ -6,7 +6,7 @@ import '../Styles/index.css';
 import Button from '../Components/Buttons/Button.js';
 import Nav from '../Components/Sections/Nav.js'; 
 
-export default function Home(){
+export default function Documents(){
 
     /*Test User*/
     const [user, setUser] = useState(Document.user)
@@ -37,7 +37,7 @@ export default function Home(){
     return(
         <section class="documentSection"> 
         
-        <Nav />
+         <div> <Nav /> </ div>
         <h1 class="documentHeader"> Documents </h1>
 
         {document.map(document => (
