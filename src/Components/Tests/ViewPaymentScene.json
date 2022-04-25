@@ -1,0 +1,31 @@
+{
+    "user": {
+        "firstName": "Luis",
+        "lastName": "Romero", 
+        "id": "4"
+    },
+
+    "landlord": {
+        "firstName": "John", 
+        "lastName": "Smith", 
+        "id": "7"
+    },
+
+    "apartment": {
+        "location": "Mayaguez",
+        "address": "University of Puerto Rico", 
+        "zipCode": "00862"
+    },
+
+    "receipt": {
+        "creation": "11-12-2022", 
+        "title": "Receipt November",
+        "rent" : "375", 
+        "parking": "12", 
+        "utilities": "200", 
+        "total": "587", 
+        "card": "VISA",
+        "cardNumber": "1234"
+    }
+
+}
