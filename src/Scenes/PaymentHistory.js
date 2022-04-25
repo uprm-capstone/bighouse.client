@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios'; 
 import PaymentHistoryScene from '../Components/Tests/PaymentHistoryScene.json'; 
 import {useRef, useState, useEffect} from 'react';
 import '../Styles/index.css';
@@ -12,9 +11,6 @@ export default function PaymentHistory(){
 
 /*Axios*/
 
-    const functionHandler = () => {
-
-    }
 
     return(
 
@@ -28,7 +24,7 @@ export default function PaymentHistory(){
         <div class="payment">
             <label class="blockTitle"> Payment sent on {payment.creation}</label> <br />
             <label class="blockInfo"> ${payment.total} </label>
-            <Button name="More" onClick={functionHandler} class="morePayment" />   
+            <Button name="More" class="morePayment" />   
         </div>
         ))}
 
