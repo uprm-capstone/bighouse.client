@@ -28,8 +28,7 @@ export default function PaymentHistory(){
         <div class="payment">
             <label class="blockTitle"> Payment sent on {payment.creation}</label> <br />
             <label class="blockInfo"> ${payment.total} </label>
-            <Button name="More" onClick={functionHandler} class="morePayment" /> 
-           
+            <Button name="More" onClick={functionHandler} class="morePayment" />   
         </div>
         ))}
 

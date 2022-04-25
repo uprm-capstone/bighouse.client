@@ -46,7 +46,7 @@ return (
                 @media (min-width: 500px){
                     .navBar ul {
                     margin-top: 10px;
-                    margin-left: 175px; 
+                    margin-left: auto; 
                     margin-right: auto; 
                     }
                 }
