@@ -197,7 +197,7 @@ const Signup = () => {
                     aria-describedby="uidnote"
                     onFocus={() => setFirstNameFocus(true)}
                     onBlur={() => setFirstNameFocus(false)}
-                    />
+                    /> <br />
                     <p id="uidnote" className={firstNameFocus && firstName && !validFirstName ? "instructions" : "offscreen"}>
 
                         Must begin with a letter. <br />
@@ -219,7 +219,7 @@ const Signup = () => {
                     aria-describedby="uidnote"
                     onFocus={() => setLastNameFocus(true)}
                     onBlur={() => setLastNameFocus(false)}
-                    />
+                    /> <br />
                     <p id = "uidnote" className={lastNameFocus && lastName && !validLastName ? "instructions" : "offscreen"}>
 
                        Must begin with a letter. <br />

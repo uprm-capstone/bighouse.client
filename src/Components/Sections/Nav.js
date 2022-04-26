@@ -39,6 +39,7 @@ return (
                 .navBar{
                     width: 100%;
                     height: 100%;
+
                 }
                 
                 .navBar ul{
@@ -47,11 +48,12 @@ return (
                     
                     padding: 0px;
                     overflow: hidden;
+                
                 }
                 @media (min-width: 500px){
                     .navBar ul {
                     margin-top: 10px;
-                    margin-left: 175px; 
+                    margin-left: auto; 
                     margin-right: auto; 
                     }
                 }

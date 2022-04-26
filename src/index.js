@@ -11,6 +11,8 @@ import Documents from './Scenes/Documents';
 import StripeContainer from './Components/StripeContainer';
 import Issues from './Scenes/Issues';
 import OpenIssue from './Scenes/OpenIssue';
+import PaymentHistory from './Scenes/PaymentHistory';
+import ViewPayment from './Scenes/ViewPayment';
 
 
 ReactDOM.render(
@@ -29,6 +31,8 @@ ReactDOM.render(
     <Route exact path="/Payment" element={<div class="App"><StripeContainer /></ div>} />
     <Route exact path="/Issues" element={<div class="App"><Issues /></ div>} />
     <Route exact path="/New-Issue" element={<div class="App"><OpenIssue /></ div>} />
+    <Route exact path ="/Payment-History" element={<div class="App"> <PaymentHistory /></ div>} />
+    <Route exact path ="/View-Payment" element={<div class="App"> <ViewPayment /></ div>} />
     <Route path="*" element={<Navigate to ="/Login" />}/>
     
 </Routes>
