@@ -16,23 +16,51 @@ export default function OpenIssue(){
 
 
     const handleSubmit = () => {
-        const newIssue = {
-            title: title,
-            apartment_id : localStorage.getItem('Apartment'),
-            status : status,
-            date_created : dateCreated.toString(),
-            date_closed : dateClosed.toString(),
-            description : description,
-            issue_type : type
-        }
-
-        axios.post(`http://localhost:8008/issues/create-issue`, newIssue )
+        // Validates user's token. If not valid, logs him/her out.
+        axios({
+            method: 'GET',
+            params: {token:localStorage.getItem('Token')},
+            url: `http://localhost:8008/validate`
+        })
         .then(res => {
-            window.location.href = window.location.origin+'/Issues';
+            console.log("TOKEN RES: "+res);
+            console.log(res);
+
+            if(!res.data){
+
+                console.log("GOT THE ERROR");
+                localStorage.removeItem('User');
+                localStorage.removeItem('Apartment');
+                localStorage.removeItem('Token');
+            
+                window.location.href = window.location.origin+'/Login';
+                return;
+
+            }
+            else{
+                const newIssue = {
+                title: title,
+                apartment_id : localStorage.getItem('Apartment'),
+                status : status,
+                date_created : dateCreated.toString(),
+                date_closed : dateClosed.toString(),
+                description : description,
+                issue_type : type
+                }
+
+                axios.post(`http://localhost:8008/issues/create-issue`, newIssue )
+                .then(res => {
+                    window.location.href = window.location.origin+'/Issues';
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+            }
         })
         .catch((error) => {
             console.log(error);
         })
+            
     }
 
     return(

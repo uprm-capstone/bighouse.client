@@ -88,7 +88,34 @@ export default function Issues(){
     }
 
     const handle = () => {
-        window.location.href = window.location.origin+'/New-Issue';
+        // Validates user's token. If not valid, logs him/her out.
+        axios({
+            method: 'GET',
+            params: {token:localStorage.getItem('Token')},
+            url: `http://localhost:8008/validate`
+        })
+        .then(res => {
+            console.log(res);
+            if(!res.data){
+
+                console.log("GOT THE ERROR");
+                localStorage.removeItem('User');
+                localStorage.removeItem('Apartment');
+                localStorage.removeItem('Token');
+            
+                window.location.href = window.location.origin+'/Login';
+                return;
+
+            }
+            else{
+                window.location.href = window.location.origin+'/New-Issue';
+                return;
+            }
+            
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
     useEffect(() => {
@@ -107,8 +134,6 @@ export default function Issues(){
             console.log(res);
 
             if(!res.data){
-
-                console.log("ENTERED IF");
 
                 console.log("GOT THE ERROR");
                 localStorage.removeItem('User');

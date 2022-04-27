@@ -84,7 +84,7 @@ export default function Home(){
 
     const showBalance = () =>{
         if(balanaceComp){
-            console.log("Has a value");
+            // console.log("Has a value");
             return balanaceComp+"%";
         }
         else{
@@ -150,14 +150,14 @@ export default function Home(){
             url: `http://localhost:8008/validate`
         })
         .then(res => {
-            console.log("TOKEN RES: "+res);
-            console.log(res);
+            // console.log("TOKEN RES: "+res);
+            // console.log(res);
 
             if(!res.data){
 
-                console.log("ENTERED IF");
+                // console.log("ENTERED IF");
 
-                console.log("GOT THE ERROR");
+                // console.log("GOT THE ERROR");
                 localStorage.removeItem('User');
                 localStorage.removeItem('Apartment');
                 localStorage.removeItem('Token');
@@ -219,7 +219,7 @@ export default function Home(){
             .then(res => {
                     setLastPayment(res.data);
                     if(utilityCost){
-                        if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment))>1){
+                        if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))>1){
                             setBalanaceComp("⌃"+((parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1)*100).toFixed(0));
                             setBalance("statusMarker");
                         }
@@ -244,7 +244,7 @@ export default function Home(){
                 url: `http://localhost:8008/issues/get-apartment-issues`
             })
             .then(res => {
-                console.log("ISSUES FOR APARTMENT ARE: "+res);
+                // console.log("ISSUES FOR APARTMENT ARE: "+res);
                     setIssue(res.data);
             })
             .catch((error) => {

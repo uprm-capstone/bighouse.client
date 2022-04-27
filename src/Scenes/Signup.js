@@ -112,12 +112,14 @@ const Signup = () => {
    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("entered")
         // if button enabled with JS hack
         const v1 = NAME_REGEX.test(firstName);
         const v2 = NAME_REGEX.test(lastName);
         const v3 = DATE_REGEX.test(date);
         const v4 = EMAIL_REGEX.test(email);
         const v5 = PASSWORD_REGEX.test(password);
+        console.log(v1 + ' ' + v2 + ' ' + v3 + ' ' + v4 + ' ' + v5)
         if (!v1 || !v2 || !v3 || !v4 || !v5) {
             setErrorMessage("Invalid Entry");
             return;

@@ -25,7 +25,7 @@ return (
      <li><a href={window.location.origin+"/Payment"}>Payments</a></li>
      <li><a href={window.location.origin+"/Issues"}>Issues</a></li>
      <li><a href={window.location.origin+"/Documents"}>Documents</a></li>
-     <li><a href='#'>Payment History</a></li>
+     <li><a href={window.location.origin+"/Payment-History"}>Payment History</a></li>
      <br /> 
      <li><a href='#'>Account</a></li>
      <li><a onClick={logout}>Log out</a></li>  
@@ -36,11 +36,6 @@ return (
     </div>
     
     <style jsx>{`
-                .navBar{
-                    width: 100%;
-                    height: 100%;
-
-                }
                 
                 .navBar ul{
                     display:flex;
