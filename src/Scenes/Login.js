@@ -86,6 +86,28 @@ export default function Login(){
 
     useEffect(() => {
         userRef.current.focus();
+        // Validates user's token. If not valid, logs him/her out.
+        axios({
+            method: 'GET',
+            params: {token:localStorage.getItem('Token')},
+            url: `http://localhost:8008/validate`
+        })
+        .then(res => {
+            console.log("TOKEN RES: "+res);
+            console.log(res);
+
+            if(!res.data){
+
+                console.log("GOT THE ERROR");
+                localStorage.removeItem('User');
+                localStorage.removeItem('Apartment');
+                localStorage.removeItem('Token');
+
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
         if(localStorage.getItem('Token')){
             if(localStorage.getItem('User')){
                 window.location.href = window.location.origin+'/Home';

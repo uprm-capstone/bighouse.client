@@ -55,7 +55,7 @@ export default function Home(){
     }
 
     const issueStatus = (status) =>{
-        if(status){
+        if(!status){
             return 'pending';
         }
         else{
@@ -65,7 +65,7 @@ export default function Home(){
     
     // Returns green or red based on the issue status
     const issuesCheck = (e) =>{
-        if(!e){
+        if(e){
             return "balanceMarker";
         }
         else{
