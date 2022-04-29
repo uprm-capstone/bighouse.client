@@ -47,8 +47,8 @@ export default function Home(){
         }
     }
 
+    // When clicking on more button redirect to view payment page.
     const handleToggle = () => {
-        console.log("CLICKED")
         console.log(lastPayment);
 
         localStorage.setItem('view', lastPayment.payment_id);
@@ -177,7 +177,6 @@ export default function Home(){
             
                 window.location.href = window.location.origin+'/Login';
                 return;
-
             }
             
             // Gets user name
@@ -258,18 +257,15 @@ export default function Home(){
                 url: process.env.REACT_APP_BASE_URL+`/issues/get-apartment-issues`
             })
             .then(res => {
-                // console.log("ISSUES FOR APARTMENT ARE: "+res);
                     setIssue(res.data);
             })
             .catch((error) => {
                 console.log(error);
             })
-
         })
         .catch((error) => {
             console.log("ERROR:" + error);
         })
-
     }, [totalCost,balanaceComp]);
 
     return(
@@ -278,13 +274,14 @@ export default function Home(){
         <h1 class="homeGray">Hi {userName}!</h1>
         <p class="homeGray"> {homeMessage()} </p>
 
-
+        {/*Unpaid Balance section*/}
         <div class="paymentBalanceBlock">
             <label class="balanceTitle"> Unpaid Balance </ label> <br />
             <label class="balanceAmount"> {unpaidBalance()} </ label> <br />
             <label class="balanceReport"> reported on {lastPayment.payment_date} </label>         
         </div> 
 
+        {/*Utilities balance section*/}
         <div class="utilitiesBalanceBlock">
             <label class="blockTitle"> Utilities Balance</label> <br />
             <div className="subBlock"> 
@@ -293,34 +290,19 @@ export default function Home(){
             </div>
         </div>
 
+        {/*Last payment section*/}
         <div class="documentsBlock">
             <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
             <div className="subBlock" > 
             <label class="blockInfo"> {displayLastPayment()} </label>
-            {/* {moreButton()} */}
             {lastPayment.total?<Button name="More" onClick={handleToggle} class="moreButton" />:null}
             </div>
         </div>
 
-
-        {/*Issues need to be added dynamically in a list */}
-
+        {/*Issues section*/}
         <h1 class="h1Gray"> Recent Issues</h1>
 
         {issueChecker()}
-
-        {/* {issue.map(issue => (
-        <div class="issuesBlock">
-    
-            <label class="blockTitle"> Opened on {issue.date_created} </label> <br />
-
-            <div class="subBlock"> 
-            <label class="blockInfo"> {issue.title} </label>
-            <label class={issuesCheck(issue.status)}>{issueStatus(issue.status)}</label>
-            </div>
-        </div>
-
-        ))} */}
 
         <p class="viewMore"> 
             <span className="line">
