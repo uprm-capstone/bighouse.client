@@ -54,7 +54,7 @@ export default function PaymentHistory(){
     axios({
         method: 'GET',
         params: {token:localStorage.getItem('Token')},
-        url: `http://localhost:8008/validate`
+        url: process.env.REACT_APP_BASE_URL+`/validate`
     })
     .then(res => {
         console.log("TOKEN RES: "+res);
@@ -79,7 +79,7 @@ export default function PaymentHistory(){
     axios({
         method: 'GET',
         params: {user_id:localStorage.getItem('User')},
-        url: `http://localhost:8008/payments/get-payments-user`
+        url: process.env.REACT_APP_BASE_URL+`/payments/get-payments-user`
     })
     .then(res => {
         setPayments(res.data);

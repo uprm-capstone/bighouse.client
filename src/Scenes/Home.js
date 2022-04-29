@@ -23,6 +23,7 @@ export default function Home(){
 
     const [year, setYear] = useState(new Date().getFullYear())
 
+    // Returns next month due payment.
     const nMonth=()=>{
         let holder = new Date().getMonth();
         if(holder>=12){
@@ -36,6 +37,7 @@ export default function Home(){
 
     const [month, setMonth] = useState(nMonth);
 
+    // If user has no allocated apartment message changes to a proper one.
     const homeMessage = () =>{
         if(localStorage.getItem('Apartment')){
             return ("Your next payment is scheduled for "+month+"/1/"+year) 
@@ -45,6 +47,7 @@ export default function Home(){
         }
     }
     
+    // If there is a total cost to be paid returns it. If there is non, then returns 0.00.
     const unpaidBalance = () =>{
         if(totalCost){
             return totalCost;
@@ -54,6 +57,7 @@ export default function Home(){
         }
     }
 
+    // Returns the proper status to the issue in question.
     const issueStatus = (status) =>{
         if(!status){
             return 'pending';
@@ -73,6 +77,7 @@ export default function Home(){
         }
     }
 
+    // Returns the proper utility balance. If there is no utility balance then a proper message is sent.
     const currentUBalance = () =>{
         if(utilityCost){
             return parseFloat(utilityCost).toFixed(2);
@@ -82,9 +87,9 @@ export default function Home(){
         }
     }
 
+    // Provides the % being saved of paid over in comparison to last utility balance payment made.
     const showBalance = () =>{
         if(balanaceComp){
-            // console.log("Has a value");
             return balanaceComp+"%";
         }
         else{
@@ -92,6 +97,7 @@ export default function Home(){
         }
     }
 
+    // Displays last payment made. If no payment to be reported like for example a newly created account a proper message is displayed.
     const displayLastPayment = () =>{
         if(lastPayment.total){
             return ("$"+lastPayment.total);
@@ -101,6 +107,7 @@ export default function Home(){
         }
     }
 
+    // If there is a last payment then the more button is displayed.
     const moreButton = () => {
         if(lastPayment.total){
             return (<Button name="More" class="moreButton" />)
@@ -110,6 +117,7 @@ export default function Home(){
         }
     }
 
+    // If there are issues to be displayed, the 4 most recent issues are displayed. If there is non then a proper message is displayed.
     const issueChecker = () => {
         if(issue){
             let counter = 0;
@@ -147,17 +155,13 @@ export default function Home(){
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
-            // console.log("TOKEN RES: "+res);
-            // console.log(res);
 
+            // If there is no data then user data is removed and logs out.
             if(!res.data){
 
-                // console.log("ENTERED IF");
-
-                // console.log("GOT THE ERROR");
                 localStorage.removeItem('User');
                 localStorage.removeItem('Apartment');
                 localStorage.removeItem('Token');
@@ -166,11 +170,12 @@ export default function Home(){
                 return;
 
             }
+            
             // Gets user name
             axios({
                 method: 'GET',
                 params: {user_id:localStorage.getItem('User')},
-                url: `http://localhost:8008/users/user`
+                url: process.env.REACT_APP_BASE_URL+`/users/user`
             })
             .then(res => {
                     setUserName(res.data.user_name);
@@ -183,7 +188,7 @@ export default function Home(){
             axios({
                 method: 'GET',
                 params: {apartment_id: localStorage.getItem('Apartment')},
-                url: `http://localhost:8008/apartments/apartment-total-cost`
+                url: process.env.REACT_APP_BASE_URL+`/apartments/apartment-total-cost`
             })
             .then(res => {
                 setApartmentCost(res.data.apartment_cost);
@@ -197,7 +202,7 @@ export default function Home(){
             axios({
                 method: 'GET',
                 params: {apartment_id: localStorage.getItem('Apartment')},
-                url: `http://localhost:8008/utility/get-utility-total`
+                url: process.env.REACT_APP_BASE_URL+`/utility/get-utility-total`
             })
             .then(res => {
                 setUtilityCost(res.data.total_cost);
@@ -214,7 +219,7 @@ export default function Home(){
             axios({
                 method: 'GET',
                 params: {user_id:localStorage.getItem('User')},
-                url: `http://localhost:8008/payments/get-payment-user`
+                url: process.env.REACT_APP_BASE_URL+`/payments/get-payment-user`
             })
             .then(res => {
                     setLastPayment(res.data);
@@ -241,7 +246,7 @@ export default function Home(){
             axios({
                 method: 'GET',
                 params: {apartment_id: localStorage.getItem('Apartment')},
-                url: `http://localhost:8008/issues/get-apartment-issues`
+                url: process.env.REACT_APP_BASE_URL+`/issues/get-apartment-issues`
             })
             .then(res => {
                 // console.log("ISSUES FOR APARTMENT ARE: "+res);

@@ -20,7 +20,7 @@ export default function OpenIssue(){
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
             console.log("TOKEN RES: "+res);
@@ -48,7 +48,7 @@ export default function OpenIssue(){
                 issue_type : type
                 }
 
-                axios.post(`http://localhost:8008/issues/create-issue`, newIssue )
+                axios.post(process.env.REACT_APP_BASE_URL+`/issues/create-issue`, newIssue )
                 .then(res => {
                     window.location.href = window.location.origin+'/Issues';
                 })

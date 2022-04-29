@@ -54,7 +54,7 @@ export default function PaymentForm() {
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
             console.log("TOKEN RES: "+res);
@@ -85,7 +85,7 @@ export default function PaymentForm() {
         if(!error) {
             try {
                 const {id} = paymentMethod
-                const response = await axios.post("http://localhost:8008/payments/create-payment", {
+                const response = await axios.post(process.env.REACT_APP_BASE_URL+"/payments/create-payment", {
                     amount: (localStorage.getItem('Pay')*100),
                     id,
                     user_id: localStorage.getItem('User'),
@@ -135,7 +135,7 @@ useEffect(() => {
     axios({
         method: 'GET',
         params: {token:localStorage.getItem('Token')},
-        url: `http://localhost:8008/validate`
+        url: process.env.REACT_APP_BASE_URL+`/validate`
     })
     .then(res => {
         console.log("TOKEN RES: "+res);
@@ -156,7 +156,7 @@ useEffect(() => {
             axios({
                 method: 'GET',
                 params: {payment_id:localStorage.getItem('view')},
-                url: `http://localhost:8008/payments/get-payment`
+                url: process.env.REACT_APP_BASE_URL+`/payments/get-payment`
             })
             .then(res => {
                 setPayment(res.data)
@@ -168,7 +168,7 @@ useEffect(() => {
             axios({
                 method: 'GET',
                 params: {apartment_id:localStorage.getItem('Apartment')},
-                url: `http://localhost:8008/apartments/apartment`
+                url: process.env.REACT_APP_BASE_URL+`/apartments/apartment`
             })
             .then(res => {
                 // console.log("Data");
@@ -182,7 +182,7 @@ useEffect(() => {
             axios({
                 method: 'GET',
                 params: {apartment_id:localStorage.getItem('Apartment')},
-                url: `http://localhost:8008/utility/get-apartment-utilities`
+                url: process.env.REACT_APP_BASE_URL+`/utility/get-apartment-utilities`
             })
             .then(res => {
                 // console.log("Data");

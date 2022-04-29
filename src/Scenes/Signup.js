@@ -144,7 +144,7 @@ const Signup = () => {
         console.log("Staring axios");
 
         // Creates user in authentication table
-        axios.post(`http://localhost:8008/auth-create`, aUser )
+        axios.post(process.env.REACT_APP_BASE_URL+`/auth-create`, aUser )
         .then(res => {
             console.log(res);
         })
@@ -153,7 +153,7 @@ const Signup = () => {
         })
 
         // Creates user in main Data Base.
-        axios.post(`http://localhost:8008/users/create-user`, user )
+        axios.post(process.env.REACT_APP_BASE_URL+`/users/create-user`, user )
         .then(res => {
             console.log(res);
             window.location.href = window.location.origin+"/Login";

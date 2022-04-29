@@ -16,6 +16,7 @@ export default function Documents(){
       
     }
 
+    // Verifies if the document requieres to be eSigned.
     const signChecker = (d) =>{
         if(d.require_signature){
             return <Button name="eSign" onClick={functionHandler} class="documentButton" />;
@@ -26,6 +27,7 @@ export default function Documents(){
     }
 
     useEffect(() => {
+        // If no Token the logout.
         if(localStorage.getItem('Token')==null){
             window.location.href = window.location.origin+'/Login';
         }
@@ -34,12 +36,13 @@ export default function Documents(){
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
             console.log("TOKEN RES: "+res);
             console.log(res);
 
+            // If there is no data then user info is removed and logs out.
             if(!res.data){
 
                 console.log("GOT THE ERROR");
@@ -60,7 +63,7 @@ export default function Documents(){
         axios({
             method: 'GET',
             params: {user_id:localStorage.getItem('User')},
-            url: `http://localhost:8008/documents/get-user-documents`
+            url: process.env.REACT_APP_BASE_URL+`/documents/get-user-documents`
         })
         .then(res => {
                 setDocument(res.data);

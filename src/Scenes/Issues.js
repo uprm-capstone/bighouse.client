@@ -92,7 +92,7 @@ export default function Issues(){
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
             console.log(res);
@@ -127,7 +127,7 @@ export default function Issues(){
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
             console.log("TOKEN RES: "+res);
@@ -149,7 +149,7 @@ export default function Issues(){
             axios({
                 method: 'GET',
                 params: {apartment_id: localStorage.getItem('Apartment')},
-                url: `http://localhost:8008/issues/get-apartment-issues`
+                url: process.env.REACT_APP_BASE_URL+`/issues/get-apartment-issues`
             })
             .then(res => {
                 console.log("ISSUES FOR APARTMENT ARE: "+res);

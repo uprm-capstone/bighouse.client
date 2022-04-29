@@ -4,8 +4,11 @@ import '../Styles/index.css';
 import Header from '../Components/Sections/Header.js';
 import axios from 'axios';
 
+// require('dotenv').config();
 
 export default function Login(){
+
+    
 
     const userRef = useRef();
     const errRef = useRef();
@@ -33,7 +36,7 @@ export default function Login(){
         axios({
             method: 'GET',
             params: {user_email:user, password:password},
-            url: `http://localhost:8008/users/verify`
+            url: process.env.REACT_APP_BASE_URL+`/users/verify`
         })
             .then(res => {
                 if(res.data != ''){
@@ -47,7 +50,7 @@ export default function Login(){
                     axios({
                         method: 'GET',
                         params: {user_id:data.user_id},
-                        url: `http://localhost:8008/occupy/get-apartment-occupant-with-user`
+                        url: process.env.REACT_APP_BASE_URL+`/occupy/get-apartment-occupant-with-user`
                     })
                     .then(res => {
                         let aData = res.data;
@@ -61,7 +64,7 @@ export default function Login(){
                     axios({
                         method: 'GET',
                         params: aUser,
-                        url: `http://localhost:8008/authorization`
+                        url: process.env.REACT_APP_BASE_URL+`/authorization`
                     })
                     .then(res => {
                         console.log(res);
@@ -86,11 +89,14 @@ export default function Login(){
 
     useEffect(() => {
         userRef.current.focus();
+        console.log("ENV is:");
+        console.log(process.env.REACT_APP_BASE_URL);
+
         // Validates user's token. If not valid, logs him/her out.
         axios({
             method: 'GET',
             params: {token:localStorage.getItem('Token')},
-            url: `http://localhost:8008/validate`
+            url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
             console.log("TOKEN RES: "+res);
