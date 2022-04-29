@@ -11,7 +11,7 @@ export default function PaymentHistory(){
      
     const [payment, setPayments] = useState(PaymentHistoryScene.payment)
 
-/*Axios*/
+
     const handleToggle = (e) => {
         console.log("CLICKED")
         console.log(e);

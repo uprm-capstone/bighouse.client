@@ -46,6 +46,15 @@ export default function Home(){
             return "No apartment has been appointed at this moment"
         }
     }
+
+    const handleToggle = (e) => {
+        console.log("CLICKED")
+        console.log(e);
+
+        localStorage.setItem('view', e.payment_id);
+        window.location.href = window.location.origin+'/View-Payment';
+
+    }
     
     // If there is a total cost to be paid returns it. If there is non, then returns 0.00.
     const unpaidBalance = () =>{
@@ -273,7 +282,7 @@ export default function Home(){
         <div class="paymentBalanceBlock">
             <label class="balanceTitle"> Unpaid Balance </ label> <br />
             <label class="balanceAmount"> {unpaidBalance()} </ label> <br />
-            <label class="balanceReport"> reported on {user.paymentReportDate} </label>         
+            <label class="balanceReport"> reported on {lastPayment.payment_date} </label>         
         </div> 
 
         <div class="utilitiesBalanceBlock">
@@ -284,14 +293,22 @@ export default function Home(){
             </div>
         </div>
 
-        <div class="documentsBlock">
+        {/* <div class="documentsBlock">
             <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
             <div className="subBlock" > 
             <label class="blockInfo"> {displayLastPayment()} </label>
             {moreButton()}
-            {/* <Button name="More" class="moreButton" /> */}
             </div>
-        </div>
+        </div> */}
+
+        <div class="documentsBlock">
+                <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
+                <div class="subBlock"> 
+                <label class="blockInfo"> {displayLastPayment()} </label>
+                <button onClick={() => handleToggle(lastPayment)} class="morePayment">More</button>
+                {/* <Button name="More" onClick={handleToggle(payment)} class="morePayment" />    */}
+                </div>
+            </div>
 
 
         {/*Issues need to be added dynamically in a list */}
