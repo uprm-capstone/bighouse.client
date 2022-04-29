@@ -47,11 +47,11 @@ export default function Home(){
         }
     }
 
-    const handleToggle = (e) => {
+    const handleToggle = () => {
         console.log("CLICKED")
-        console.log(e);
+        console.log(lastPayment);
 
-        localStorage.setItem('view', e.payment_id);
+        localStorage.setItem('view', lastPayment.payment_id);
         window.location.href = window.location.origin+'/View-Payment';
 
     }
@@ -119,7 +119,7 @@ export default function Home(){
     // If there is a last payment then the more button is displayed.
     const moreButton = () => {
         if(lastPayment.total){
-            return (<Button name="More" class="moreButton" />)
+            return (<Button name="More" class="moreButton" onPress={() => handleToggle(lastPayment)} />)
         }
         else{
             return;
@@ -293,22 +293,14 @@ export default function Home(){
             </div>
         </div>
 
-        {/* <div class="documentsBlock">
+        <div class="documentsBlock">
             <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
             <div className="subBlock" > 
             <label class="blockInfo"> {displayLastPayment()} </label>
-            {moreButton()}
+            {/* {moreButton()} */}
+            {lastPayment.total?<Button name="More" onClick={handleToggle} class="moreButton" />:null}
             </div>
-        </div> */}
-
-        <div class="documentsBlock">
-                <label class="blockTitle"> Last Payment {lastPayment.payment_date}</label> <br />
-                <div class="subBlock"> 
-                <label class="blockInfo"> {displayLastPayment()} </label>
-                <button onClick={() => handleToggle(lastPayment)} class="morePayment">More</button>
-                {/* <Button name="More" onClick={handleToggle(payment)} class="morePayment" />    */}
-                </div>
-            </div>
+        </div>
 
 
         {/*Issues need to be added dynamically in a list */}

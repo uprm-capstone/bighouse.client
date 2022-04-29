@@ -29,8 +29,8 @@ export default function PaymentHistory(){
                 <label class="blockTitle"> Payment sent on {payment.payment_date}</label> <br />
                 <div class="subBlock"> 
                 <label class="blockInfo"> ${payment.total} </label>
-                <button onClick={() => handleToggle(payment)} className="morePayment">More</button>
-                {/* <Button name="More" onClick={handleToggle(payment)} class="morePayment" />    */}
+                {/* <button onClick={() => handleToggle(payment)} className="morePayment">More</button> */}
+                <Button name="More" onClick={()=>handleToggle(payment)} class="morePayment" />   
                 </div>
             </div>
             ));
