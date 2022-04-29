@@ -137,8 +137,7 @@ useEffect(() => {
             <div class="paymentSentDate"> Payment sent on {payment.payment_date} </ div> 
 
 
-            {/* <Button name="Download Receipt" class="downloadReceiptButton"/>   */}
-            <button onClick={clicking}>Download Receipt</button>
+            <Button name="Download Receipt" onClick={clicking} class="downloadReceiptButton"/>  
        </div>
     </section>
     )

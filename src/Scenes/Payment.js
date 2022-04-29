@@ -121,6 +121,8 @@ const handleUtilities = () => {
                 <label class="viewPaymentData"> {utility.utility_name} </label>
                 <label class="viewBalanceData">${(utility.cost_per_unit*utility.unit_quantity).toFixed(2)}</label>
                 </div>
+
+                {/* <div class="viewPaymentData"> {utility.utility_name} ${(utility.cost_per_unit*utility.unit_quantity).toFixed(2)} </div><br /> */}
             </div>
             ));
     }
@@ -171,8 +173,6 @@ useEffect(() => {
                 url: process.env.REACT_APP_BASE_URL+`/apartments/apartment`
             })
             .then(res => {
-                // console.log("Data");
-                // console.log(res.data);
                 setApartment(res.data);
             })
             .catch((error) => {
@@ -185,8 +185,6 @@ useEffect(() => {
                 url: process.env.REACT_APP_BASE_URL+`/utility/get-apartment-utilities`
             })
             .then(res => {
-                // console.log("Data");
-                // console.log(res.data);
                 setUtilities(res.data);
             })
             .catch((error) => {
