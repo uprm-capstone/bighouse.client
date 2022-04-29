@@ -53,6 +53,7 @@ useEffect(() => {
         console.log("TOKEN RES: "+res);
         console.log(res);
 
+        // If no data then user data is removed and logs out.
         if(!res.data){
 
             console.log("GOT THE ERROR");
@@ -82,28 +83,26 @@ useEffect(() => {
         console.log(error);
     })
 
+    // Gets apartment data.
     axios({
         method: 'GET',
         params: {apartment_id:localStorage.getItem('Apartment')},
         url: process.env.REACT_APP_BASE_URL+`/apartments/apartment`
     })
     .then(res => {
-        // console.log("Data");
-        // console.log(res.data);
         setApartment(res.data);
     })
     .catch((error) => {
         console.log(error);
     })
 
+    // Gets apartment utilities.
     axios({
         method: 'GET',
         params: {apartment_id:localStorage.getItem('Apartment')},
         url: process.env.REACT_APP_BASE_URL+`/utility/get-apartment-utilities`
     })
     .then(res => {
-        // console.log("Data");
-        // console.log(res.data);
         setUtilities(res.data);
     })
     .catch((error) => {

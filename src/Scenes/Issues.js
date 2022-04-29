@@ -29,10 +29,9 @@ export default function Issues(){
     }
 
 
+    // Manages display for unsolved issues. If there are no issues the a proper message is displayed.
     const issueUnsolved = () => {
         if(issue){
-            console.log(issue);
-            console.log("THERE ARE ISSUES");
             return issue.map(issue => !issue.status?(
                 <div class="issuesBlock">
             
@@ -58,6 +57,7 @@ export default function Issues(){
         }
     }
 
+    // Manages display for solved issues. If there are no issues the a proper message is displayed.
     const issueSolved = () => {
         if(issue){
             console.log(issue);
@@ -95,7 +95,8 @@ export default function Issues(){
             url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
-            console.log(res);
+            
+            // If no data then user data is removed and logs out.
             if(!res.data){
 
                 console.log("GOT THE ERROR");
@@ -119,6 +120,7 @@ export default function Issues(){
     }
 
     useEffect(() => {
+        // If no Token (JWT) found then logs out.
         if(localStorage.getItem('Token')==null){
             window.location.href = window.location.origin+'/Login';
         }
@@ -130,9 +132,8 @@ export default function Issues(){
             url: process.env.REACT_APP_BASE_URL+`/validate`
         })
         .then(res => {
-            console.log("TOKEN RES: "+res);
-            console.log(res);
 
+            // If no data then user data is removed and logs out.
             if(!res.data){
 
                 console.log("GOT THE ERROR");
@@ -145,7 +146,7 @@ export default function Issues(){
 
             }
 
-            // Get Issues data
+            // Gets Issues data
             axios({
                 method: 'GET',
                 params: {apartment_id: localStorage.getItem('Apartment')},

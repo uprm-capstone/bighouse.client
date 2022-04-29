@@ -21,6 +21,7 @@ export default function PaymentHistory(){
 
     }
 
+    // Manages the proper display of the payments. I no payment is found a proper message is displayed.
   const showPayments = () => {
       if(payment){
         return payment.map(payment => (
@@ -60,6 +61,7 @@ export default function PaymentHistory(){
         console.log("TOKEN RES: "+res);
         console.log(res);
 
+        // If no data then user data is removed and logs out.
         if(!res.data){
 
             console.log("GOT THE ERROR");
@@ -76,6 +78,7 @@ export default function PaymentHistory(){
         console.log(error);
     });
 
+    // Gets data for the user payments.
     axios({
         method: 'GET',
         params: {user_id:localStorage.getItem('User')},

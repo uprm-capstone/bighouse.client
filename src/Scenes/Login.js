@@ -29,10 +29,7 @@ export default function Login(){
             roles:["boss"]
         }
 
-        // .catch((error) => {
-        //     console.log(error);
-        // })
-
+        // Verifies the user information for log in.
         axios({
             method: 'GET',
             params: {user_email:user, password:password},
@@ -43,7 +40,6 @@ export default function Login(){
 
                     console.log("Passed verify");
                     let data = res.data;
-                    console.log(res);
                     localStorage.setItem('User', data.user_id);
 
                     // Gets apartment which user occupies
@@ -60,7 +56,7 @@ export default function Login(){
 
                         })
 
-                    // Authorizes and logs user
+                    // Authorizes, gets token and logs user.
                     axios({
                         method: 'GET',
                         params: aUser,
@@ -89,8 +85,6 @@ export default function Login(){
 
     useEffect(() => {
         userRef.current.focus();
-        console.log("ENV is:");
-        console.log(process.env.REACT_APP_BASE_URL);
 
         // Validates user's token. If not valid, logs him/her out.
         axios({
@@ -102,6 +96,7 @@ export default function Login(){
             console.log("TOKEN RES: "+res);
             console.log(res);
 
+            // If no data then user data is removed.
             if(!res.data){
 
                 console.log("GOT THE ERROR");
@@ -114,6 +109,7 @@ export default function Login(){
         .catch((error) => {
             console.log(error);
         });
+        // If there is a proper Token and User then it's sent to the home page. Else data is removed.
         if(localStorage.getItem('Token')){
             if(localStorage.getItem('User')){
                 window.location.href = window.location.origin+'/Home';

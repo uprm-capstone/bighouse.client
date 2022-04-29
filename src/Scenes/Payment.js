@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import Nav from "../Components/Sections/Nav";
 import ViewPaymentScene from '../Components/Tests/ViewPaymentScene.json'; 
 
-
+// Gives styling to the card field.
 const CARD_OPTIONS = {
 	iconStyle: "solid",
 	style: {
@@ -60,6 +60,7 @@ export default function PaymentForm() {
             console.log("TOKEN RES: "+res);
             console.log(res);
 
+            // If no data the user data is removed and logs out.
             if(!res.data){
 
                 console.log("GOT THE ERROR");
@@ -76,6 +77,7 @@ export default function PaymentForm() {
             console.log(error);
         });
 
+        // Prepares to carry out payment by gathering proper data.
         const {error, paymentMethod} = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardElement)
@@ -85,6 +87,7 @@ export default function PaymentForm() {
         if(!error) {
             try {
                 const {id} = paymentMethod
+                // Makes payment with the stripe checkout PCI compliant service and adds payment info to data base.
                 const response = await axios.post(process.env.REACT_APP_BASE_URL+"/payments/create-payment", {
                     amount: (localStorage.getItem('Pay')*100),
                     id,
@@ -95,9 +98,6 @@ export default function PaymentForm() {
                     apartment_cost: localStorage.getItem('aCost')
                 })
 
-                // if(response.data.success) {
-                //     console.log("Successful payment")
-                // }
                 console.log(response);
                 
                 window.location.href = window.location.origin + '/Home';
@@ -112,9 +112,9 @@ export default function PaymentForm() {
         }
 }
 
+// Handles the proper display of the different utilities to pay and their balance.
 const handleUtilities = () => {
     if(utilities){
-        // console.log(utilities);
         return utilities.map(utility => (
             <div class="utility">
                 <div class="subBlock"> 

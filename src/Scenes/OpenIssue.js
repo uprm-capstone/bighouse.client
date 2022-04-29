@@ -26,6 +26,7 @@ export default function OpenIssue(){
             console.log("TOKEN RES: "+res);
             console.log(res);
 
+            // If no data the user data is removed and logs out.
             if(!res.data){
 
                 console.log("GOT THE ERROR");
@@ -48,6 +49,7 @@ export default function OpenIssue(){
                 issue_type : type
                 }
 
+                // Creates new issue and then redirects to Issues page.
                 axios.post(process.env.REACT_APP_BASE_URL+`/issues/create-issue`, newIssue )
                 .then(res => {
                     window.location.href = window.location.origin+'/Issues';
