@@ -35,6 +35,7 @@ export default function PaymentForm() {
     const [apartment, setApartment] = useState(ViewPaymentScene.apartment)
     const [payment, setPayment] = useState(ViewPaymentScene.apartment)
     const [utilities, setUtilities] = useState()
+    const [paying, setPaying] = useState(false)
 
     const userRef = useRef();
     const errRef = useRef(); 
@@ -49,6 +50,7 @@ export default function PaymentForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setPaying(true);
         
         // Validates user's token. If not valid, logs him/her out.
         axios({
@@ -109,6 +111,7 @@ export default function PaymentForm() {
         } 
         else {
             console.log(error.message);
+            setPaying(false);
         }
 }
 
@@ -230,7 +233,7 @@ useEffect(() => {
                 </fieldset>
                 <br/>
 
-                <button>Pay</button>
+                <button disabled={paying}>{paying?'Loading...':'Pay'}</button>
             
             </form>
 
