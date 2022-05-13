@@ -20,9 +20,13 @@ export default function Home(){
     const [lastPayment, setLastPayment] = useState(0);
     const [balanaceComp, setBalanaceComp] = useState(0);
     const [balance, setBalance] = useState('');
+    const [toPay, setToPay] = useState(true);
 
     const [year, setYear] = useState(new Date().getFullYear())
 
+    const currentDate = (new Date().getFullYear().toString()+'-'+(new Date().getMonth()+1).toString()+'-'+new Date().getDate().toString()).toString()
+
+    
     // Returns next month due payment.
     const nMonth=()=>{
         let holder = new Date().getMonth();
@@ -36,6 +40,15 @@ export default function Home(){
     }
 
     const [month, setMonth] = useState(nMonth);
+
+    const checkPaymentDate =(e)=>{
+        if(!(e.payment_date.toString().indexOf(year.toString()+'-'+(month<10?'0'+(month-1).toString():(month-1).toString())))){
+            setToPay(false);
+        }
+        else{
+            setToPay(true);
+        }
+    }
 
     // If user has no allocated apartment message changes to a proper one.
     const homeMessage = () =>{
@@ -55,10 +68,19 @@ export default function Home(){
         window.location.href = window.location.origin+'/View-Payment';
 
     }
+
+    const unpaid = () => {
+        if(toPay){
+            return 'Unpaid Balance';
+        }
+        else{
+            return 'Terms payment has been made';
+        }
+    }
     
     // If there is a total cost to be paid returns it. If there is non, then returns 0.00.
     const unpaidBalance = () =>{
-        if(totalCost){
+        if(toPay){
             return totalCost;
         }
         else{
@@ -231,6 +253,7 @@ export default function Home(){
             })
             .then(res => {
                     setLastPayment(res.data);
+                    checkPaymentDate(res.data);
                     if(utilityCost){
                         if(parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))>1){
                             setBalanaceComp("⌃"+((parseFloat(parseFloat(utilityCost)/parseFloat(lastPayment.utility_cost))-1)*100).toFixed(0));
@@ -276,9 +299,9 @@ export default function Home(){
 
         {/*Unpaid Balance section*/}
         <div class="paymentBalanceBlock">
-            <label class="balanceTitle"> Unpaid Balance </ label> <br />
+            <label class="balanceTitle"> {unpaid()} </ label> <br />
             <label class="balanceAmount"> {unpaidBalance()} </ label> <br />
-            <label class="balanceReport"> reported on {lastPayment.payment_date} </label>         
+            <label class="balanceReport"> reported on {currentDate} </label>         
         </div> 
 
         {/*Utilities balance section*/}
